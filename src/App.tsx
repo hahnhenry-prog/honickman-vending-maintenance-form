@@ -8,7 +8,7 @@ import { fixtureLocation, fixtureMachines } from "./dev/testFixture";
 import { loadFiltersRemote } from "./lib/filterConfig";
 import { submitRequest } from "./lib/supabase";
 
-const DEV_PREVIEW = true; // set to true to jump straight to Review with test data
+const DEV_PREVIEW = false;
 import LocationForm from "./components/LocationForm";
 import BillingForm from "./components/BillingForm";
 import MachinesSection from "./components/MachinesSection";
