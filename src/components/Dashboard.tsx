@@ -66,14 +66,70 @@ function RoleSelector({ onSelect }: { onSelect: (r: DashboardRole) => void }) {
   );
 }
 
+// ── Sales Rep Selector ────────────────────────────────────────────────────────
+
+function SalesRepSelector({ onSelect }: { onSelect: (name: string) => void }) {
+  const [names, setNames] = useState<string[]>([]);
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    fetchRequests().then((data) => {
+      const unique = Array.from(
+        new Set(data.map((r) => r.sales_rep).filter(Boolean))
+      ).sort((a, b) => a.localeCompare(b));
+      setNames(unique);
+      setLoading(false);
+    });
+  }, []);
+
+  if (loading) {
+    return (
+      <div className="flex items-center justify-center flex-1 text-gray-500 text-sm">
+        Loading…
+      </div>
+    );
+  }
+
+  return (
+    <div className="flex-1 overflow-y-auto">
+      <div className="max-w-lg mx-auto px-6 py-10">
+        <div className="text-center mb-8">
+          <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">Sales</div>
+          <h2 className="text-xl font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            Who are you?
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">Select your name to see your submitted requests.</p>
+        </div>
+        {names.length === 0 ? (
+          <div className="text-center text-gray-500 text-sm py-8">No submissions found yet.</div>
+        ) : (
+          <div className="space-y-2">
+            {names.map((name) => (
+              <button
+                key={name}
+                onClick={() => onSelect(name)}
+                className="w-full text-left px-5 py-4 bg-white border border-gray-200 rounded-xl hover:border-[#174a92] hover:bg-blue-50 transition-all text-sm font-medium text-[#0e2d6b]"
+              >
+                {name}
+              </button>
+            ))}
+          </div>
+        )}
+      </div>
+    </div>
+  );
+}
+
 // ── Request List ──────────────────────────────────────────────────────────────
 
 function RequestList({
   role,
   onSelect,
+  salesRep,
 }: {
   role: DashboardRole;
   onSelect: (id: string) => void;
+  salesRep?: string;
 }) {
   const [requests, setRequests] = useState<DbRequest[]>([]);
   const [loading, setLoading] = useState(true);
@@ -87,10 +143,11 @@ function RequestList({
 
   useEffect(() => {
     fetchRequests(statusFilter[role]).then((data) => {
-      setRequests(data);
+      const filtered = salesRep ? data.filter((r) => r.sales_rep === salesRep) : data;
+      setRequests(filtered);
       setLoading(false);
     });
-  }, [role]);
+  }, [role, salesRep]);
 
   if (loading) {
     return (
@@ -578,6 +635,7 @@ function RequestDetail({
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
   const [role, setRole] = useState<DashboardRole | null>(null);
+  const [salesRep, setSalesRep] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
 
   return (
@@ -606,9 +664,9 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
           {role && (
             <div className="flex items-center gap-2">
               <span className="text-xs text-white/50">Role:</span>
-              <span className="text-xs font-semibold text-white">{role}</span>
+              <span className="text-xs font-semibold text-white">{role}{salesRep ? ` · ${salesRep}` : ""}</span>
               <button
-                onClick={() => { setRole(null); setSelectedId(null); }}
+                onClick={() => { setRole(null); setSalesRep(null); setSelectedId(null); }}
                 className="text-xs text-white/40 hover:text-white/70 transition-colors ml-1 underline underline-offset-2"
               >
                 Switch
@@ -621,6 +679,8 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
       {/* Body */}
       {!role ? (
         <RoleSelector onSelect={setRole} />
+      ) : role === "Sales" && !salesRep ? (
+        <SalesRepSelector onSelect={setSalesRep} />
       ) : selectedId ? (
         <RequestDetail
           id={selectedId}
@@ -632,18 +692,20 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
           <div className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between flex-shrink-0">
             <div>
               <div className="font-semibold text-[#0e2d6b] text-sm">
-                {role === "Vending" ? "Pending Vending Review" :
+                {role === "Sales" ? `${salesRep}'s Requests` :
+                 role === "Vending" ? "Pending Vending Review" :
                  role === "MDM" ? "Ready for MDM Processing" :
                  "All Requests"}
               </div>
               <div className="text-xs text-gray-500 mt-0.5">
-                {role === "Vending" ? "Verify asset IDs and add card reader serials" :
+                {role === "Sales" ? <button onClick={() => setSalesRep(null)} className="hover:text-[#174a92] transition-colors underline underline-offset-2">Not you? Switch name</button> :
+                 role === "Vending" ? "Verify asset IDs and add card reader serials" :
                  role === "MDM" ? "Download VIP data and mark requests complete" :
                  "Click a request to view details"}
               </div>
             </div>
           </div>
-          <RequestList role={role} onSelect={setSelectedId} />
+          <RequestList role={role} onSelect={setSelectedId} salesRep={salesRep ?? undefined} />
         </>
       )}
     </div>
