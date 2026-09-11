@@ -1051,6 +1051,21 @@ interface Props {
 export default function MachinesSection({ machines, onChange, customerShortName }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [pendingFocusId, setPendingFocusId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (!pendingFocusId) return;
+    const isMobile = "ontouchstart" in window;
+    requestAnimationFrame(() => {
+      const card = document.getElementById(`machine-card-${pendingFocusId}`);
+      if (card) card.scrollIntoView({ behavior: "smooth", block: "start" });
+      if (!isMobile) {
+        const input = card?.querySelector<HTMLInputElement>("input[data-location-name]");
+        input?.focus();
+      }
+      setPendingFocusId(null);
+    });
+  }, [pendingFocusId]);
   const [picker, setPicker] = useState<{
     machineId: string;
     slotKey: string;
@@ -1107,6 +1122,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
     next.splice(idx + 1, 0, copy);
     onChange(next);
     setExpandedId(newId);
+    setPendingFocusId(newId);
   };
 
   const update = (id: string, patch: Partial<MachineEntry>) =>
@@ -1263,6 +1279,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
           return (
             <div
               key={machine.id}
+              id={`machine-card-${machine.id}`}
               className="bg-white rounded-xl border border-gray-200"
             >
               {/* Header */}
@@ -1395,6 +1412,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                     </label>
                     <input
                       type="text"
+                      data-location-name
                       value={machine.locationName}
                       onChange={(e) =>
                         update(machine.id, { locationName: e.target.value })
