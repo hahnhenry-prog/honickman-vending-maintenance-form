@@ -1,4 +1,5 @@
 import { LocationData } from "../types";
+import { parsePhone, formatPhone, isValidPhone } from "../lib/phone";
 
 
 interface Props {
@@ -142,11 +143,14 @@ export default function LocationForm({ data, onChange }: Props) {
             <Field label="Phone" required>
               <input
                 type="tel"
-                value={data.contactPhone}
-                onChange={set("contactPhone")}
+                value={formatPhone(data.contactPhone)}
+                onChange={(e) => onChange({ ...data, contactPhone: parsePhone(e.target.value) })}
                 placeholder="(555) 000-0000"
-                className={inputCls}
+                className={`${inputCls} ${data.contactPhone && !isValidPhone(data.contactPhone) ? "border-red-300 focus:border-red-400 focus:ring-red-200" : ""}`}
               />
+              {data.contactPhone && !isValidPhone(data.contactPhone) && (
+                <p className="text-xs text-red-500 mt-1">Enter a 10-digit US phone number.</p>
+              )}
             </Field>
           </div>
           <Field label="Email">
