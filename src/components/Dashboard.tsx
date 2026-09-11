@@ -96,7 +96,7 @@ function SalesRepSelector({ onSelect }: { onSelect: (name: string) => void }) {
         <div className="text-center mb-8">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">Sales</div>
           <h2 className="text-xl font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
-            Who are you?
+            Select Your Name
           </h2>
           <p className="text-sm text-gray-500 mt-1">Select your name to see your submitted requests.</p>
         </div>
