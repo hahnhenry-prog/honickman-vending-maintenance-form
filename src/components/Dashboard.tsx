@@ -115,8 +115,8 @@ function RequestList({
   }
 
   return (
-    <div className="flex-1 overflow-y-auto">
-      <table className="w-full text-sm">
+    <div className="flex-1 overflow-y-auto overflow-x-auto">
+      <table className="w-full min-w-[560px] text-sm">
         <thead className="bg-gray-50 border-b border-gray-200 sticky top-0">
           <tr>
             {["Business", "Branch", "Sales Rep", "Machines", "Submitted", "Status"].map((h) => (
@@ -360,7 +360,7 @@ function RequestDetail({
   return (
     <div className="flex-1 overflow-y-auto">
       {/* Screen-only top bar */}
-      <div className="no-print max-w-4xl mx-auto px-8 pt-8 flex items-center justify-between">
+      <div className="no-print max-w-4xl mx-auto px-4 sm:px-8 pt-6 sm:pt-8 flex items-center justify-between">
         <button onClick={onBack} className="flex items-center gap-2 text-sm text-gray-500 hover:text-gray-700 transition-colors">
           <svg width="16" height="16" viewBox="0 0 16 16" fill="none">
             <path d="M10 12L6 8l4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
@@ -384,7 +384,7 @@ function RequestDetail({
         </div>
       </div>
 
-      <div className="print-region max-w-4xl mx-auto px-8 py-6 space-y-6">
+      <div className="print-region max-w-4xl mx-auto px-4 sm:px-8 py-6 space-y-6">
 
         {/* Print-only header */}
         <div className="hidden print:block mb-4">
@@ -398,7 +398,7 @@ function RequestDetail({
         {/* Customer Details */}
         <section className="bg-white rounded-xl border border-gray-200 p-6 break-inside-avoid">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Customer Details</div>
-          <dl className="grid grid-cols-[160px_1fr] gap-y-3 text-sm">
+          <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
             <dt className="text-gray-500">Business</dt>
             <dd className="font-medium text-[#0e2d6b]">{request.business_name}</dd>
             {request.business_short_name && (<><dt className="text-gray-500">Short Name</dt><dd className="font-mono text-gray-700">{request.business_short_name}</dd></>)}
@@ -426,7 +426,7 @@ function RequestDetail({
               Vendor setup pending
             </div>
           ) : (
-            <dl className="grid grid-cols-[160px_1fr] gap-y-3 text-sm">
+            <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
               <dt className="text-gray-500">AP Vendor #</dt>
               <dd className="text-gray-700">{request.ap_vendor_number}</dd>
               <dt className="text-gray-500">Billing Account</dt>
