@@ -630,12 +630,75 @@ function RequestDetail({
   );
 }
 
+// ── Password Gate ─────────────────────────────────────────────────────────────
+
+const PROTECTED_ROLES: DashboardRole[] = ["Vending", "MDM", "Route Accounting"];
+const ROLE_PASSWORD = "Vending26";
+
+function PasswordGate({ role, onSuccess, onBack }: { role: DashboardRole; onSuccess: () => void; onBack: () => void }) {
+  const [value, setValue] = useState("");
+  const [error, setError] = useState(false);
+
+  const submit = () => {
+    if (value === ROLE_PASSWORD) {
+      onSuccess();
+    } else {
+      setError(true);
+      setValue("");
+    }
+  };
+
+  return (
+    <div className="flex-1 flex items-center justify-center px-6">
+      <div className="w-full max-w-sm">
+        <div className="text-center mb-6">
+          <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">{role}</div>
+          <h2 className="text-xl font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            Enter Password
+          </h2>
+          <p className="text-sm text-gray-500 mt-1">This view is restricted to operations staff.</p>
+        </div>
+        <div className="space-y-3">
+          <input
+            type="password"
+            value={value}
+            onChange={(e) => { setValue(e.target.value); setError(false); }}
+            onKeyDown={(e) => e.key === "Enter" && submit()}
+            placeholder="Password"
+            autoFocus={!("ontouchstart" in window)}
+            className={`w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-colors ${error ? "border-red-400 focus:ring-red-200" : "border-gray-300 focus:ring-[#174a92]/25 focus:border-[#174a92]"}`}
+          />
+          {error && <p className="text-xs text-red-500">Incorrect password. Please try again.</p>}
+          <button
+            onClick={submit}
+            className="w-full py-2.5 bg-[#174a92] text-white text-sm font-semibold rounded-lg hover:bg-[#0e3585] transition-colors"
+          >
+            Continue
+          </button>
+          <button
+            onClick={onBack}
+            className="w-full py-2 text-sm text-gray-500 hover:text-gray-700 transition-colors"
+          >
+            Back
+          </button>
+        </div>
+      </div>
+    </div>
+  );
+}
+
 // ── Dashboard Shell ───────────────────────────────────────────────────────────
 
 export default function Dashboard({ onClose }: { onClose: () => void }) {
   const [role, setRole] = useState<DashboardRole | null>(null);
+  const [authed, setAuthed] = useState(false);
   const [salesRep, setSalesRep] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
+
+  const handleRoleSelect = (r: DashboardRole) => {
+    setRole(r);
+    setAuthed(!PROTECTED_ROLES.includes(r));
+  };
 
   return (
     <div className="min-h-full flex flex-col">
@@ -665,7 +728,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
               <span className="text-xs text-white/50">Role:</span>
               <span className="text-xs font-semibold text-white">{role}{salesRep ? ` · ${salesRep}` : ""}</span>
               <button
-                onClick={() => { setRole(null); setSalesRep(null); setSelectedId(null); }}
+                onClick={() => { setRole(null); setAuthed(false); setSalesRep(null); setSelectedId(null); }}
                 className="text-xs text-white/40 hover:text-white/70 transition-colors ml-1 underline underline-offset-2"
               >
                 Switch
@@ -677,7 +740,9 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
 
       {/* Body */}
       {!role ? (
-        <RoleSelector onSelect={setRole} />
+        <RoleSelector onSelect={handleRoleSelect} />
+      ) : !authed ? (
+        <PasswordGate role={role} onSuccess={() => setAuthed(true)} onBack={() => { setRole(null); setAuthed(false); }} />
       ) : role === "Sales" && !salesRep ? (
         <SalesRepSelector onSelect={setSalesRep} />
       ) : selectedId ? (
