@@ -1390,7 +1390,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                         Machine Status
                         <span className="text-[#174a92] ml-0.5">*</span>
                       </label>
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         {(
                           [
                             {
@@ -1464,8 +1464,8 @@ export default function MachinesSection({ machines, onChange }: Props) {
                       {/* Asset number — shown when existing machine selected */}
                       {machine.machineStatus === "existing" && (
                         <>
-                        <div className="mt-4 flex items-start gap-4">
-                          <div className="flex-1 max-w-xs">
+                        <div className="mt-4 flex flex-wrap items-start gap-4">
+                          <div className="flex-1 min-w-[200px] max-w-xs">
                             <label className="block text-sm font-medium text-gray-700 mb-1.5">
                               Machine Asset Number
                               <span className="text-[#174a92] ml-0.5">*</span>
@@ -1517,7 +1517,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                         Machine Pricing
                         <span className="text-[#174a92] ml-0.5">*</span>
                       </label>
-                      <div className="flex gap-3">
+                      <div className="flex flex-col sm:flex-row gap-3">
                         {(
                           [
                             {
