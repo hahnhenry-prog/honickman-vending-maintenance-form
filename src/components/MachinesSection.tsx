@@ -1116,6 +1116,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
       id: newId,
       locationName: "",
       shortName: "",
+      assetNumber: "",
     };
     const idx = machines.findIndex((m) => m.id === id);
     const next = [...machines];
