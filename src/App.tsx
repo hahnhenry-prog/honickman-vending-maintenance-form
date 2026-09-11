@@ -8,7 +8,7 @@ import { fixtureLocation, fixtureMachines } from "./dev/testFixture";
 import { loadFiltersRemote } from "./lib/filterConfig";
 import { submitRequest } from "./lib/supabase";
 
-const DEV_PREVIEW = false;
+const DEV_PREVIEW = false; // set to true to jump straight to Review with test data
 import LocationForm from "./components/LocationForm";
 import BillingForm from "./components/BillingForm";
 import MachinesSection from "./components/MachinesSection";
@@ -23,6 +23,7 @@ const STEPS: { id: FormStep; label: string; sub: string }[] = [
 
 const defaultLocation: LocationData = {
   businessName: "",
+  businessShortName: "",
   address: "",
   city: "",
   state: "NY",
@@ -147,6 +148,7 @@ export default function App() {
 
   const canContinueLocation =
     location.businessName.trim() !== "" &&
+    (location.businessShortName ?? "").trim() !== "" &&
     location.address.trim() !== "" &&
     location.city.trim() !== "" &&
     location.zip.trim() !== "" &&
