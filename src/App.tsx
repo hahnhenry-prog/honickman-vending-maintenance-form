@@ -108,10 +108,25 @@ function StepIndicator({ current }: { current: FormStep }) {
   );
 }
 
+const SESSION_KEY = "pcny_form_session";
+
+function loadSession(): { step: FormStep; location: LocationData; machines: MachineEntry[] } | null {
+  try {
+    const raw = sessionStorage.getItem(SESSION_KEY);
+    return raw ? JSON.parse(raw) : null;
+  } catch { return null; }
+}
+
+function saveSession(step: FormStep, location: LocationData, machines: MachineEntry[]) {
+  try { sessionStorage.setItem(SESSION_KEY, JSON.stringify({ step, location, machines })); }
+  catch { /* storage full — fail silently */ }
+}
+
 export default function App() {
-  const [step, setStep] = useState<FormStep>(DEV_PREVIEW ? "review" : "location");
-  const [location, setLocation] = useState<LocationData>(DEV_PREVIEW ? fixtureLocation : defaultLocation);
-  const [machines, setMachines] = useState<MachineEntry[]>(DEV_PREVIEW ? fixtureMachines : []);
+  const saved = DEV_PREVIEW ? null : loadSession();
+  const [step, setStep] = useState<FormStep>(DEV_PREVIEW ? "review" : (saved?.step ?? "location"));
+  const [location, setLocation] = useState<LocationData>(DEV_PREVIEW ? fixtureLocation : (saved?.location ?? defaultLocation));
+  const [machines, setMachines] = useState<MachineEntry[]>(DEV_PREVIEW ? fixtureMachines : (saved?.machines ?? []));
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [submitError, setSubmitError] = useState<string | null>(null);
@@ -120,6 +135,11 @@ export default function App() {
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
+
+  // Persist form state across refreshes (sessionStorage clears on tab close)
+  useEffect(() => {
+    if (!DEV_PREVIEW) saveSession(step, location, machines);
+  }, [step, location, machines]);
 
   // Load filters from Supabase on startup so product pickers are always filtered correctly
   useEffect(() => { loadFiltersRemote(); }, []);
@@ -198,6 +218,7 @@ export default function App() {
     setSubmitError(null);
     try {
       const id = await submitRequest(location, machines);
+      sessionStorage.removeItem(SESSION_KEY);
       setRequestId(id);
       setSubmitted(true);
     } catch (e) {
@@ -242,6 +263,7 @@ export default function App() {
             setSubmitted(false);
             setSubmitError(null);
             setRequestId(null);
+            sessionStorage.removeItem(SESSION_KEY);
             setStep("location");
             setLocation(defaultLocation);
             setMachines([]);
