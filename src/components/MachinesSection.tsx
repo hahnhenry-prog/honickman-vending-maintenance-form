@@ -186,11 +186,11 @@ function ProductPickerModal({
             >
               Assign Product
             </div>
-            <div className="text-xs text-gray-400 mt-0.5">{slotLabel}</div>
+            <div className="text-xs text-gray-500 mt-0.5">{slotLabel}</div>
           </div>
           <button
             onClick={onClose}
-            className="text-gray-400 hover:text-gray-600 text-2xl leading-none w-8 h-8 flex items-center justify-center"
+            className="text-gray-500 hover:text-gray-600 text-2xl leading-none w-8 h-8 flex items-center justify-center"
           >
             ×
           </button>
@@ -211,7 +211,7 @@ function ProductPickerModal({
         {/* Product list */}
         <div className="flex-1 overflow-y-auto px-5 py-2">
           {loading && (
-            <div className="flex items-center justify-center py-12 text-gray-400 text-sm">
+            <div className="flex items-center justify-center py-12 text-gray-500 text-sm">
               Loading products…
             </div>
           )}
@@ -219,7 +219,7 @@ function ProductPickerModal({
             <div className="py-8 text-center text-sm text-red-500">{error}</div>
           )}
           {!loading && !error && results.length === 0 && (
-            <div className="py-8 text-center text-sm text-gray-400">
+            <div className="py-8 text-center text-sm text-gray-500">
               No products found for "{search}"
             </div>
           )}
@@ -252,7 +252,7 @@ function ProductPickerModal({
                             {p.flavor && <span className="text-gray-500"> · {p.flavor}</span>}
                           </div>
                           {(p.size || p.material) && (
-                            <div className="text-xs text-gray-400 mt-0.5">
+                            <div className="text-xs text-gray-500 mt-0.5">
                               {[p.size, p.material].filter(Boolean).join(" · ")}
                             </div>
                           )}
@@ -260,7 +260,7 @@ function ProductPickerModal({
                       ) : (
                         <div className="text-sm font-medium text-gray-800 truncate">{p.description}</div>
                       )}
-                      <div className="text-[10px] text-gray-400 mt-0.5">#{p.id}</div>
+                      <div className="text-[10px] text-gray-500 mt-0.5">#{p.id}</div>
                     </div>
                     {isSelected && (
                       <div className="w-4 h-4 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0">
@@ -292,16 +292,16 @@ function ProductPickerModal({
               {lockedPrice ? (
                 <div className="flex items-center gap-2">
                   <div className="flex items-center border border-gray-200 rounded-lg overflow-hidden bg-gray-50">
-                    <span className="px-3 py-2 text-sm text-gray-400 border-r border-gray-200 select-none">$</span>
+                    <span className="px-3 py-2 text-sm text-gray-500 border-r border-gray-200 select-none">$</span>
                     <span className="px-3 py-2 text-sm font-semibold text-gray-500 w-24">{lockedPrice}</span>
                   </div>
-                  <span className="text-xs text-gray-400">per vend</span>
-                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-400 font-medium">machine rate</span>
+                  <span className="text-xs text-gray-500">per vend</span>
+                  <span className="text-[10px] px-2 py-0.5 rounded-full bg-gray-100 text-gray-500 font-medium">machine rate</span>
                 </div>
               ) : (
                 <div className="flex items-center gap-2">
                   <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden">
-                    <span className="px-3 py-2 text-sm text-gray-400 bg-gray-50 border-r border-gray-300 select-none">$</span>
+                    <span className="px-3 py-2 text-sm text-gray-500 bg-gray-50 border-r border-gray-300 select-none">$</span>
                     <input
                       type="number"
                       step="0.25"
@@ -311,7 +311,7 @@ function ProductPickerModal({
                       className="w-24 px-3 py-2 text-sm focus:outline-none"
                     />
                   </div>
-                  <span className="text-xs text-gray-400">per vend</span>
+                  <span className="text-xs text-gray-500">per vend</span>
                 </div>
               )}
             </div>
@@ -320,7 +320,7 @@ function ProductPickerModal({
             {current ? (
               <button
                 onClick={() => onSave(null)}
-                className="text-sm text-gray-400 hover:text-[#174a92] transition-colors"
+                className="text-sm text-gray-500 hover:text-[#174a92] transition-colors"
               >
                 Clear slot
               </button>
@@ -527,7 +527,7 @@ function ButtonRow({ machineType }: { machineType: MachineType }) {
   return (
     <div className="mb-1">
       {/* Label sits above, doesn't affect chip alignment */}
-      <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-widest mb-1.5">
+      <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-widest mb-1.5">
         Button #
       </div>
 
@@ -617,11 +617,11 @@ function PlanogramEditor({
             <span className="text-xs font-semibold text-gray-500 uppercase tracking-wider">
               {isStack ? "Stack Planogram" : `${machineType.category} Planogram`}
             </span>
-            <span className="text-xs text-gray-400">
+            <span className="text-xs text-gray-500">
               · Click a slot to assign a product
             </span>
           </div>
-          <div className="text-xs text-gray-400 tabular-nums mt-1">
+          <div className="text-xs text-gray-500 tabular-nums mt-1">
             <span className={filledSlots === totalSlots ? "text-emerald-600 font-medium" : ""}>
               {filledSlots}
             </span>
@@ -740,7 +740,7 @@ function PlanogramEditor({
               {Array.from({ length: machineType.columns }, (_, c) => (
                 <div
                   key={c}
-                  className="w-[84px] text-center text-xs font-semibold text-gray-400"
+                  className="w-[84px] text-center text-xs font-semibold text-gray-500"
                 >
                   {colLabel(c)}
                 </div>
@@ -749,7 +749,7 @@ function PlanogramEditor({
             {/* Rows */}
             {Array.from({ length: machineType.rows! }, (_, r) => (
               <div key={r} className="flex items-center gap-1.5 mb-1.5">
-                <div className="w-6 text-xs text-gray-400 text-right flex-shrink-0 font-medium">
+                <div className="w-6 text-xs text-gray-500 text-right flex-shrink-0 font-medium">
                   {r + 1}
                 </div>
                 {Array.from({ length: machineType.columns }, (_, c) => {
@@ -842,7 +842,7 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
         <div className="pointer-events-none" style={{ transform: "scale(0.44)", transformOrigin: "top left", width: 97, height: 33 }}>
           <AssetTagSVG suffix={suffix} />
         </div>
-        <span className="text-[9px] text-gray-400 group-hover:text-gray-600 transition-colors font-medium leading-tight text-center">
+        <span className="text-[9px] text-gray-500 group-hover:text-gray-600 transition-colors font-medium leading-tight text-center">
           Click to<br />enlarge
         </span>
       </button>
@@ -862,13 +862,13 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
                 <div className="font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
                   Where to find the Asset Number
                 </div>
-                <div className="text-xs text-gray-400 mt-0.5">
+                <div className="text-xs text-gray-500 mt-0.5">
                   Look for the PCNY tag affixed to the machine body
                 </div>
               </div>
               <button
                 onClick={() => setOpen(false)}
-                className="w-8 h-8 rounded-lg text-gray-400 hover:text-gray-600 hover:bg-gray-100 flex items-center justify-center text-xl leading-none transition-colors"
+                className="w-8 h-8 rounded-lg text-gray-500 hover:text-gray-600 hover:bg-gray-100 flex items-center justify-center text-xl leading-none transition-colors"
               >
                 ×
               </button>
@@ -891,12 +891,12 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
               <div className="text-center pt-4">
                 <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#174a92]/10 border border-[#174a92]/20">
                   <span className="font-mono font-bold text-sm text-[#174a92]">0700</span>
-                  <span className="text-xs text-gray-400">then the</span>
+                  <span className="text-xs text-gray-500">then the</span>
                   <span className="font-mono font-bold text-sm text-[#174a92]">6-digit number</span>
-                  <span className="text-xs text-gray-400">after it</span>
+                  <span className="text-xs text-gray-500">after it</span>
                 </span>
               </div>
-              <p className="text-xs text-gray-400 text-center">
+              <p className="text-xs text-gray-500 text-center">
                 Enter only the last 6 digits — the <span className="font-mono font-semibold text-gray-500">0700</span> prefix is added automatically.
               </p>
             </div>
@@ -963,7 +963,7 @@ function MachineTypeSelector({
           </>
         ) : (
           <>
-            <span className="text-sm text-gray-400 flex-1">Select machine type…</span>
+            <span className="text-sm text-gray-500 flex-1">Select machine type…</span>
             <svg className="w-4 h-4 text-gray-400 flex-shrink-0" viewBox="0 0 16 16" fill="none">
               <path d="M4 6l4 4 4-4" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round" />
             </svg>
@@ -977,14 +977,14 @@ function MachineTypeSelector({
   return (
     <div className="rounded-xl border border-gray-200 bg-[#f8f7f5] p-5 space-y-5">
       <div className="flex items-center justify-between">
-        <span className="text-xs font-semibold text-gray-400 uppercase tracking-widest">
+        <span className="text-xs font-semibold text-gray-500 uppercase tracking-widest">
           Select Machine Type
         </span>
         {selectedType && (
           <button
             type="button"
             onClick={() => setOpen(false)}
-            className="text-xs text-gray-400 hover:text-gray-600 transition-colors"
+            className="text-xs text-gray-500 hover:text-gray-600 transition-colors"
           >
             Cancel
           </button>
@@ -995,7 +995,7 @@ function MachineTypeSelector({
         const style = CATEGORY_STYLES[cat];
         return (
           <div key={cat}>
-            <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-2">
+            <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">
               {cat}
             </div>
             <div className="flex gap-3 flex-wrap">
@@ -1014,7 +1014,7 @@ function MachineTypeSelector({
                     <span className={`font-semibold text-sm leading-tight ${isSelected ? "text-white" : "text-[#0e2d6b]"}`}>
                       {type.label}
                     </span>
-                    <span className={`text-xs ${isSelected ? "text-white/60" : "text-gray-400"}`}>
+                    <span className={`text-xs ${isSelected ? "text-white/60" : "text-gray-500"}`}>
                       {type.shortLabel}
                     </span>
                     <span className={`text-[11px] mt-1.5 px-2 py-0.5 rounded-full font-medium ${isSelected ? "bg-white/20 text-white" : style.pill}`}>
@@ -1210,7 +1210,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
               height="28"
               viewBox="0 0 28 28"
               fill="none"
-              className="text-gray-400"
+              className="text-gray-500"
             >
               <rect
                 x="4"
@@ -1238,7 +1238,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
           <div className="text-gray-500 text-sm font-medium">
             No machines added yet
           </div>
-          <div className="text-gray-400 text-xs mt-1">
+          <div className="text-gray-500 text-xs mt-1">
             Click "Add Machine" to start configuring
           </div>
         </div>
@@ -1278,7 +1278,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                 <div className="flex-1 min-w-0">
                   <div className="font-medium text-sm text-[#0e2d6b] flex items-center gap-2">
                     {machine.locationName || (
-                      <span className="text-gray-400 font-normal italic">
+                      <span className="text-gray-500 font-normal italic">
                         Unnamed machine
                       </span>
                     )}
@@ -1288,7 +1288,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                       </span>
                     )}
                   </div>
-                  <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-2">
+                  <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-2">
                     {type ? (
                       <>
                         <span>{type.category}</span>
@@ -1402,7 +1402,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                       placeholder="e.g. Main Entrance 1"
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
                     />
-                    <p className="text-xs text-gray-400 mt-1">
+                    <p className="text-xs text-gray-500 mt-1">
                       For machines in the same location, add a number, counting
                       from left to right (e.g. Cafeteria 1)
                     </p>
@@ -1436,7 +1436,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             placeholder="e.g. Entrance 1"
                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
                           />
-                          <p className="text-xs text-gray-400 mt-1">
+                          <p className="text-xs text-gray-500 mt-1">
                             Must be unique within this location. Max {maxShortName} characters based on Customer Short Name.
                           </p>
                         </div>
@@ -1450,12 +1450,12 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             {vipName}
                           </div>
                           <p className="text-xs mt-1">
-                            <span className={atLimit ? "text-amber-500 font-medium" : "text-gray-400"}>
+                            <span className={atLimit ? "text-amber-500 font-medium" : "text-gray-500"}>
                               {vipLen}/{VIP_MAX} characters
                             </span>
-                            <span className="text-gray-400"> — auto-generated from Customer and Location Short Names.</span>
+                            <span className="text-gray-500"> — auto-generated from Customer and Location Short Names.</span>
                           </p>
-                          <p className="text-xs text-gray-400 mt-1.5 italic">
+                          <p className="text-xs text-gray-500 mt-1.5 italic">
                             Tip: a shorter customer name leaves more room for a descriptive location name, making it easier for drivers to identify placement.
                           </p>
                         </div>
@@ -1531,7 +1531,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             >
                               <span
                                 className={`flex-shrink-0 ${
-                                  isSelected ? "text-[#174a92]" : "text-gray-400"
+                                  isSelected ? "text-[#174a92]" : "text-gray-500"
                                 }`}
                               >
                                 {icon}
@@ -1565,7 +1565,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                               <span className="text-[#174a92] ml-0.5">*</span>
                             </label>
                             <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors">
-                              <span className="px-3 py-2 text-sm font-mono font-semibold text-gray-400 bg-gray-50 border-r border-gray-300 select-none tracking-wider flex-shrink-0">
+                              <span className="px-3 py-2 text-sm font-mono font-semibold text-gray-500 bg-gray-50 border-r border-gray-300 select-none tracking-wider flex-shrink-0">
                                 0700
                               </span>
                               <input
@@ -1582,7 +1582,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                                 className="flex-1 px-3 py-2 text-sm font-mono tracking-widest focus:outline-none bg-white placeholder:text-gray-300"
                               />
                             </div>
-                            <p className="text-xs text-gray-400 mt-1">
+                            <p className="text-xs text-gray-500 mt-1">
                               Enter the 6-digit number after "0700" on the asset tag.
                             </p>
                           </div>
@@ -1647,7 +1647,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                                 <div className={`text-sm font-medium leading-snug ${isSelected ? "text-[#0e2d6b]" : "text-gray-600"}`}>
                                   {label}
                                 </div>
-                                <div className="text-xs text-gray-400 mt-0.5">{sub}</div>
+                                <div className="text-xs text-gray-500 mt-0.5">{sub}</div>
                               </div>
                               {isSelected && (
                                 <div className="w-5 h-5 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0 mt-0.5">
@@ -1669,7 +1669,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             <span className="text-[#174a92] ml-0.5">*</span>
                           </label>
                           <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors w-36">
-                            <span className="px-3 py-2 text-sm text-gray-400 bg-gray-50 border-r border-gray-300 select-none">$</span>
+                            <span className="px-3 py-2 text-sm text-gray-500 bg-gray-50 border-r border-gray-300 select-none">$</span>
                             <input
                               type="number"
                               step="0.25"
@@ -1690,7 +1690,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                               className="flex-1 px-3 py-2 text-sm focus:outline-none"
                             />
                           </div>
-                          <p className="text-xs text-gray-400 mt-1">Applied to every product in this machine.</p>
+                          <p className="text-xs text-gray-500 mt-1">Applied to every product in this machine.</p>
                         </div>
                       )}
                     </div>
