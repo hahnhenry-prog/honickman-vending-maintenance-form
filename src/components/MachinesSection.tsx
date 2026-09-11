@@ -260,7 +260,7 @@ function ProductPickerModal({
                       ) : (
                         <div className="text-sm font-medium text-gray-800 truncate">{p.description}</div>
                       )}
-                      <div className="text-[10px] text-gray-300 mt-0.5">#{p.id}</div>
+                      <div className="text-[10px] text-gray-400 mt-0.5">#{p.id}</div>
                     </div>
                     {isSelected && (
                       <div className="w-4 h-4 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0">
