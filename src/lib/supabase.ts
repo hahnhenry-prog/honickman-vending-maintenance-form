@@ -159,6 +159,7 @@ export interface DbMachine {
   request_id: string;
   location_name: string;
   short_name: string;
+  vip_account_name: string;
   machine_type_id: string;
   machine_status: string;
   asset_number: string;
@@ -258,6 +259,7 @@ export async function submitRequest(
         request_id: req.id,
         location_name: m.locationName,
         short_name: m.shortName,
+        vip_account_name: `FS ${location.businessShortName ?? ""} ${m.shortName ?? ""}`.trim().toUpperCase(),
         machine_type_id: m.machineTypeId,
         machine_status: m.machineStatus,
         asset_number: m.assetNumber,
