@@ -56,7 +56,7 @@ export default function LocationForm({ data, onChange }: Props) {
       </div>
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
           Business Information
         </div>
         <div className="space-y-4">
@@ -78,9 +78,9 @@ export default function LocationForm({ data, onChange }: Props) {
               maxLength={10}
               className={inputCls}
             />
-            <p className="mt-1.5 text-xs text-gray-400">
+            <p className="mt-1.5 text-xs text-gray-500">
               Truncated description used for the account name in VIP. Max 10 characters — shorter is better.
-              <span className={`ml-2 font-mono ${(data.businessShortName ?? "").length === 10 ? "text-amber-500" : "text-gray-300"}`}>
+              <span className={`ml-2 font-mono ${(data.businessShortName ?? "").length === 10 ? "text-amber-500" : "text-gray-400"}`}>
                 {(data.businessShortName ?? "").length}/10
               </span>
             </p>
@@ -123,10 +123,10 @@ export default function LocationForm({ data, onChange }: Props) {
       </section>
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
           On-Site Contact
         </div>
-        <p className="text-xs text-gray-400 -mt-2">
+        <p className="text-xs text-gray-500 -mt-2">
           The administrative contact responsible for coordinating delivery, installation, and any on-site matters.
         </p>
         <div className="space-y-4">
@@ -161,7 +161,7 @@ export default function LocationForm({ data, onChange }: Props) {
       </section>
 
       <section className="bg-white rounded-xl border border-gray-200 p-6 space-y-5">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
           Request Details
         </div>
         <div className="space-y-4">
