@@ -111,9 +111,9 @@ export default function BillingForm({ data, onChange }: Props) {
                 }
               }}
               placeholder="0.0"
-              className="flex-1 px-3 py-2 text-sm focus:outline-none bg-white"
+              className="flex-1 px-3 py-2 text-sm focus:outline-none bg-white rounded-l-md"
             />
-            <span className="px-3 py-2 text-sm border-l border-gray-300 text-gray-400 bg-gray-50 select-none">%</span>
+            <span className="px-3 py-2 text-sm border-l border-gray-300 text-gray-400 bg-gray-50 select-none rounded-r-md">%</span>
           </div>
         </Field>
       </section>
