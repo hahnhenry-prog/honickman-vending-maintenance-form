@@ -59,7 +59,7 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Business Information
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Business Name" required className="col-span-2">
             <input
               type="text"
@@ -102,7 +102,7 @@ export default function LocationForm({ data, onChange }: Props) {
               className={inputCls}
             />
           </Field>
-          <div className="grid grid-cols-2 gap-3">
+          <div className="grid grid-cols-2 gap-3 sm:col-span-1">
             <Field label="State">
               <div className={`${inputCls} bg-gray-50 text-gray-700 font-medium cursor-not-allowed`}>
                 NY
@@ -129,7 +129,7 @@ export default function LocationForm({ data, onChange }: Props) {
         <p className="text-xs text-gray-400 -mt-2">
           The administrative contact responsible for coordinating delivery, installation, and any on-site matters.
         </p>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="Contact Name" required>
             <input
               type="text"
@@ -162,7 +162,7 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Request Details
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="PCNY Point of Contact" required>
             <input
               type="text"
