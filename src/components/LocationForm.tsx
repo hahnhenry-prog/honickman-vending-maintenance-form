@@ -59,8 +59,8 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Business Information
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="Business Name" required className="col-span-2">
+        <div className="space-y-4">
+          <Field label="Business Name" required>
             <input
               type="text"
               value={data.businessName}
@@ -69,7 +69,7 @@ export default function LocationForm({ data, onChange }: Props) {
               className={inputCls}
             />
           </Field>
-          <Field label="Business Short Name" required className="col-span-2">
+          <Field label="Business Short Name" required>
             <input
               type="text"
               value={data.businessShortName ?? ""}
@@ -85,7 +85,7 @@ export default function LocationForm({ data, onChange }: Props) {
               </span>
             </p>
           </Field>
-          <Field label="Street Address" required className="col-span-2">
+          <Field label="Street Address" required>
             <input
               type="text"
               value={data.address}
@@ -102,7 +102,7 @@ export default function LocationForm({ data, onChange }: Props) {
               className={inputCls}
             />
           </Field>
-          <div className="grid grid-cols-2 gap-3 sm:col-span-1">
+          <div className="grid grid-cols-2 gap-3">
             <Field label="State">
               <div className={`${inputCls} bg-gray-50 text-gray-700 font-medium cursor-not-allowed`}>
                 NY
@@ -129,25 +129,27 @@ export default function LocationForm({ data, onChange }: Props) {
         <p className="text-xs text-gray-400 -mt-2">
           The administrative contact responsible for coordinating delivery, installation, and any on-site matters.
         </p>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="Contact Name" required>
-            <input
-              type="text"
-              value={data.contactName}
-              onChange={set("contactName")}
-              className={inputCls}
-            />
-          </Field>
-          <Field label="Phone" required>
-            <input
-              type="tel"
-              value={data.contactPhone}
-              onChange={set("contactPhone")}
-              placeholder="(555) 000-0000"
-              className={inputCls}
-            />
-          </Field>
-          <Field label="Email" className="col-span-2">
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="Contact Name" required>
+              <input
+                type="text"
+                value={data.contactName}
+                onChange={set("contactName")}
+                className={inputCls}
+              />
+            </Field>
+            <Field label="Phone" required>
+              <input
+                type="tel"
+                value={data.contactPhone}
+                onChange={set("contactPhone")}
+                placeholder="(555) 000-0000"
+                className={inputCls}
+              />
+            </Field>
+          </div>
+          <Field label="Email">
             <input
               type="email"
               value={data.contactEmail}
@@ -162,44 +164,46 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Request Details
         </div>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-          <Field label="PCNY Point of Contact" required>
-            <input
-              type="text"
-              value={data.salesRep}
-              onChange={set("salesRep")}
-              placeholder="Your name"
-              className={inputCls}
-            />
-          </Field>
-          <Field label="Approved By" required>
-            <select value={data.approvedBy ?? ""} onChange={set("approvedBy")} className={inputCls}>
-              <option value="">Select approver…</option>
-              <option>Joe Hayes</option>
-              <option>Steve Cavallo</option>
-              <option>Gil Montalvo</option>
-              <option>Terrence Hoffman</option>
-            </select>
-          </Field>
-          <Field label="Branch" required>
-            <select value={data.branch ?? ""} onChange={set("branch")} className={inputCls}>
-              <option value="">Select branch…</option>
-              <option value="Bronx">Bronx</option>
-              <option value="Queens">Queens</option>
-              <option value="Brooklyn">Brooklyn</option>
-              <option value="Long Island">Long Island</option>
-            </select>
-          </Field>
-          <Field label="Distributor">
-            <input
-              type="text"
-              value={data.distributor ?? ""}
-              onChange={set("distributor")}
-              placeholder="Distributor name"
-              className={inputCls}
-            />
-          </Field>
-          <Field label="Notes" className="col-span-2">
+        <div className="space-y-4">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
+            <Field label="PCNY Point of Contact" required>
+              <input
+                type="text"
+                value={data.salesRep}
+                onChange={set("salesRep")}
+                placeholder="Your name"
+                className={inputCls}
+              />
+            </Field>
+            <Field label="Approved By" required>
+              <select value={data.approvedBy ?? ""} onChange={set("approvedBy")} className={inputCls}>
+                <option value="">Select approver…</option>
+                <option>Joe Hayes</option>
+                <option>Steve Cavallo</option>
+                <option>Gil Montalvo</option>
+                <option>Terrence Hoffman</option>
+              </select>
+            </Field>
+            <Field label="Branch" required>
+              <select value={data.branch ?? ""} onChange={set("branch")} className={inputCls}>
+                <option value="">Select branch…</option>
+                <option value="Bronx">Bronx</option>
+                <option value="Queens">Queens</option>
+                <option value="Brooklyn">Brooklyn</option>
+                <option value="Long Island">Long Island</option>
+              </select>
+            </Field>
+            <Field label="Distributor">
+              <input
+                type="text"
+                value={data.distributor ?? ""}
+                onChange={set("distributor")}
+                placeholder="Distributor name"
+                className={inputCls}
+              />
+            </Field>
+          </div>
+          <Field label="Notes">
             <textarea
               value={data.notes}
               onChange={set("notes")}
