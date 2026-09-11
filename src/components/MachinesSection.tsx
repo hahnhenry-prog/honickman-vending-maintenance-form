@@ -1170,12 +1170,6 @@ export default function MachinesSection({ machines, onChange }: Props) {
             planogram.
           </p>
         </div>
-        <button
-          onClick={addMachine}
-          className="flex items-center gap-2 px-4 py-2.5 bg-[#174a92] text-white rounded-lg text-sm font-semibold hover:bg-[#0e3585] transition-colors flex-shrink-0 shadow-sm"
-        >
-          <span className="text-base leading-none">+</span> Add Machine
-        </button>
       </div>
 
       {machines.length === 0 && (
@@ -1366,7 +1360,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                       }
                       maxLength={12}
                       placeholder="e.g. CAFETERIA1"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors font-mono tracking-wide"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
                     />
                     <p className="text-xs text-gray-400 mt-1">
                       Must be unique within this location. Truncated description
@@ -1624,12 +1618,29 @@ export default function MachinesSection({ machines, onChange }: Props) {
                       />
                     </div>
                   )}
+
+                  {/* Bottom action bar */}
+                  <div className="flex justify-end pt-4 mt-2 border-t border-gray-100">
+                    <button
+                      onClick={() => setExpandedId(null)}
+                      className="px-4 py-2 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] transition-colors"
+                    >
+                      Save
+                    </button>
+                  </div>
                 </div>
               )}
             </div>
           );
         })}
       </div>
+
+      <button
+        onClick={addMachine}
+        className="flex items-center gap-2 px-4 py-2.5 bg-[#174a92] text-white rounded-lg text-sm font-semibold hover:bg-[#0e3585] transition-colors shadow-sm"
+      >
+        <span className="text-base leading-none">+</span> Add Machine
+      </button>
 
       {picker && (
         <ProductPickerModal
