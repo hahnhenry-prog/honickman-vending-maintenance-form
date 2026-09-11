@@ -1045,9 +1045,10 @@ function MachineTypeSelector({
 interface Props {
   machines: MachineEntry[];
   onChange: (machines: MachineEntry[]) => void;
+  customerShortName: string;
 }
 
-export default function MachinesSection({ machines, onChange }: Props) {
+export default function MachinesSection({ machines, onChange, customerShortName }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
   const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [picker, setPicker] = useState<{
@@ -1429,6 +1430,19 @@ export default function MachinesSection({ machines, onChange }: Props) {
                       Must be unique within this location. Truncated description
                       used for the account name in VIP. Max 12 characters (
                       {12 - (machine.shortName?.length ?? 0)} remaining).
+                    </p>
+                  </div>
+
+                  {/* VIP Account Name */}
+                  <div className="max-w-sm">
+                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                      VIP Account Name
+                    </label>
+                    <div className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-gray-50 text-gray-700 font-mono tracking-wide select-all">
+                      {`FS ${customerShortName} ${machine.shortName ?? ""}`.trim()}
+                    </div>
+                    <p className="text-xs text-gray-400 mt-1">
+                      Auto-generated from Customer Short Name and Machine Location Short Name.
                     </p>
                   </div>
 
