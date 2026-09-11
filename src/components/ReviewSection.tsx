@@ -59,12 +59,6 @@ export default function ReviewSection({ location, machines }: Props) {
         <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
           <dt className="text-gray-500">Business</dt>
           <dd className="font-medium text-[#0e2d6b]">{location.businessName}</dd>
-          {location.businessShortName && (
-            <>
-              <dt className="text-gray-500">Short Name</dt>
-              <dd className="font-mono text-[#0e2d6b]">{location.businessShortName}</dd>
-            </>
-          )}
           <dt className="text-gray-500">Address</dt>
           <dd className="text-[#0e2d6b]">
             {location.address}, {location.city}
@@ -174,6 +168,27 @@ export default function ReviewSection({ location, machines }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
           Machines ({totalMachines})
         </div>
+
+        {/* VIP Account Names */}
+        {machines.some((m) => m.shortName) && (
+          <div className="mb-5 pb-5 border-b border-gray-100">
+            <div className="text-xs text-gray-500 font-medium mb-2">VIP Account Names</div>
+            <div className="flex flex-col gap-1">
+              {machines.map((m, i) => {
+                const name = `FS ${location.businessShortName ?? ""} ${m.shortName ?? ""}`.trim().toUpperCase();
+                return (
+                  <div key={m.id} className="flex items-center gap-2">
+                    <span className="w-5 h-5 rounded-full bg-[#0e2d6b] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                      {i + 1}
+                    </span>
+                    <span className="font-mono text-sm text-[#0e2d6b]">{name}</span>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+        )}
+
         <div className="space-y-4">
           {machines.map((machine, i) => {
             const type = MACHINE_TYPES.find((t) => t.id === machine.machineTypeId);
