@@ -27,7 +27,7 @@ export default function ReviewSection({ location, machines }: Props) {
       </div>
 
       {/* Summary strip */}
-      <div className="grid grid-cols-3 gap-3">
+      <div className="grid grid-cols-3 sm:grid-cols-3 gap-3">
         {[
           { label: "Machines Requested", value: totalMachines },
           { label: "Products", value: uniqueSkus },
@@ -56,7 +56,7 @@ export default function ReviewSection({ location, machines }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
           Location
         </div>
-        <dl className="grid grid-cols-[140px_1fr] gap-y-3 text-sm">
+        <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
           <dt className="text-gray-500">Business</dt>
           <dd className="font-medium text-[#0e2d6b]">{location.businessName}</dd>
           {location.businessShortName && (
@@ -126,7 +126,7 @@ export default function ReviewSection({ location, machines }: Props) {
               </span>
             )}
           </div>
-          <dl className="grid grid-cols-[160px_1fr] gap-y-3 text-sm">
+          <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
             {location.apVendorNumber && (
               <>
                 <dt className="text-gray-500">AP Vendor Number</dt>
