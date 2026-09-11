@@ -290,7 +290,7 @@ export default function App() {
     <>
     <div className="min-h-full flex flex-col">
       {/* App header */}
-      <header className="text-white px-4 sm:px-8 py-3 flex items-center justify-between flex-shrink-0 overflow-hidden" style={{ backgroundColor: "#174a92" }}>
+      <header className="text-white px-4 sm:px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "#174a92" }}>
         <img
           src={logo}
           alt="Pepsi-Cola Bottling Company of New York, Inc."
