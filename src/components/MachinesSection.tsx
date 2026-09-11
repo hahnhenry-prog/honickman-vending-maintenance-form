@@ -1049,6 +1049,7 @@ interface Props {
 
 export default function MachinesSection({ machines, onChange }: Props) {
   const [expandedId, setExpandedId] = useState<string | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
   const [picker, setPicker] = useState<{
     machineId: string;
     slotKey: string;
@@ -1077,6 +1078,24 @@ export default function MachinesSection({ machines, onChange }: Props) {
   const remove = (id: string) => {
     onChange(machines.filter((m) => m.id !== id));
     if (expandedId === id) setExpandedId(null);
+    setConfirmDeleteId(null);
+  };
+
+  const duplicate = (id: string) => {
+    const src = machines.find((m) => m.id === id);
+    if (!src) return;
+    const newId = crypto.randomUUID();
+    const copy: MachineEntry = {
+      ...src,
+      id: newId,
+      locationName: "",
+      shortName: "",
+    };
+    const idx = machines.findIndex((m) => m.id === id);
+    const next = [...machines];
+    next.splice(idx + 1, 0, copy);
+    onChange(next);
+    setExpandedId(newId);
   };
 
   const update = (id: string, patch: Partial<MachineEntry>) =>
@@ -1286,7 +1305,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                     )}
                   </div>
                 </div>
-                <div className="flex items-center gap-3 flex-shrink-0">
+                <div className="flex items-center gap-2 flex-shrink-0">
                   {type && (
                     <span
                       className={`text-xs px-2 py-0.5 rounded-full font-medium ${CATEGORY_STYLES[type.category].pill}`}
@@ -1294,16 +1313,43 @@ export default function MachinesSection({ machines, onChange }: Props) {
                       {type.shortLabel}
                     </span>
                   )}
+                  {/* Copy machine */}
                   <button
-                    onClick={(e) => {
-                      e.stopPropagation();
-                      remove(machine.id);
-                    }}
-                    className="text-gray-300 hover:text-[#174a92] transition-colors w-6 h-6 flex items-center justify-center text-xl leading-none"
-                    title="Remove machine"
+                    onClick={(e) => { e.stopPropagation(); duplicate(machine.id); }}
+                    className="text-gray-300 hover:text-[#174a92] transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100"
+                    title="Duplicate machine"
                   >
-                    ×
+                    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+                      <rect x="4" y="4" width="8" height="8" rx="1.5" />
+                      <path d="M2 10V2.5A.5.5 0 012.5 2H10" />
+                    </svg>
                   </button>
+                  {/* Delete with confirmation */}
+                  {confirmDeleteId === machine.id ? (
+                    <div className="flex items-center gap-1.5" onClick={(e) => e.stopPropagation()}>
+                      <span className="text-xs text-gray-500">Remove?</span>
+                      <button
+                        onClick={() => remove(machine.id)}
+                        className="text-xs px-2 py-0.5 rounded bg-red-500 text-white font-medium hover:bg-red-600 transition-colors"
+                      >
+                        Yes
+                      </button>
+                      <button
+                        onClick={() => setConfirmDeleteId(null)}
+                        className="text-xs px-2 py-0.5 rounded bg-gray-100 text-gray-600 font-medium hover:bg-gray-200 transition-colors"
+                      >
+                        No
+                      </button>
+                    </div>
+                  ) : (
+                    <button
+                      onClick={(e) => { e.stopPropagation(); setConfirmDeleteId(machine.id); }}
+                      className="text-gray-300 hover:text-red-400 transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-xl leading-none"
+                      title="Remove machine"
+                    >
+                      ×
+                    </button>
+                  )}
                   <svg
                     className={`w-4 h-4 text-gray-400 transition-transform duration-200 ${isExpanded ? "rotate-180" : ""}`}
                     viewBox="0 0 16 16"
