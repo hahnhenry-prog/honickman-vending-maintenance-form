@@ -73,7 +73,7 @@ export default function BillingForm({ data, onChange }: Props) {
               type="text"
               value={data.apVendorNumber ?? ""}
               onChange={set("apVendorNumber")}
-              placeholder="e.g. 1234"
+              placeholder="e.g. 12345"
               className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
