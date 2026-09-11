@@ -1,5 +1,6 @@
 export interface LocationData {
   businessName: string;
+  businessShortName: string;
   address: string;
   city: string;
   state: string;
