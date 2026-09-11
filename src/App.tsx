@@ -49,8 +49,8 @@ const defaultLocation: LocationData = {
 function StepIndicator({ current }: { current: FormStep }) {
   const currentIdx = STEPS.findIndex((s) => s.id === current);
   return (
-    <div className="bg-white border-b border-gray-200 px-8 py-4 flex-shrink-0">
-      <div className="flex items-center">
+    <div className="bg-white border-b border-gray-200 px-8 py-4 flex-shrink-0 overflow-x-auto">
+      <div className="flex items-center min-w-max">
         {STEPS.map((step, i) => {
           const done = i < currentIdx;
           const active = i === currentIdx;
@@ -267,7 +267,7 @@ export default function App() {
     <>
     <div className="min-h-full flex flex-col">
       {/* App header */}
-      <header className="text-white px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "#174a92" }}>
+      <header className="text-white px-4 sm:px-8 py-3 flex items-center justify-between flex-shrink-0 overflow-hidden" style={{ backgroundColor: "#174a92" }}>
         <img
           src={logo}
           alt="Pepsi-Cola Bottling Company of New York, Inc."
@@ -320,8 +320,8 @@ export default function App() {
       <StepIndicator current={step} />
 
       {/* Scrollable content */}
-      <main className="flex-1 overflow-y-auto">
-        <div className="max-w-4xl mx-auto px-8 py-8">
+      <main className="flex-1 overflow-y-auto overflow-x-hidden">
+        <div className="max-w-4xl mx-auto px-4 sm:px-8 py-8">
           {step === "location" && (
             <LocationForm data={location} onChange={setLocation} />
           )}
@@ -338,7 +338,7 @@ export default function App() {
       </main>
 
       {/* Footer nav */}
-      <footer className="bg-white border-t border-gray-200 px-8 py-4 flex justify-between items-center flex-shrink-0">
+      <footer className="bg-white border-t border-gray-200 px-4 sm:px-8 py-4 flex flex-wrap justify-between items-center gap-2 flex-shrink-0">
         <button
           onClick={back}
           className={`px-5 py-2.5 rounded-lg text-sm font-medium border border-gray-300 text-gray-600 hover:bg-gray-50 transition-colors ${step === "location" ? "invisible" : ""}`}
