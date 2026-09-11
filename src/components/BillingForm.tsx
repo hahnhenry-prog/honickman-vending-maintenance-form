@@ -66,7 +66,7 @@ export default function BillingForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Account
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="AP Vendor Number" required={!skipped}>
             <input
               type="text"
@@ -121,7 +121,7 @@ export default function BillingForm({ data, onChange }: Props) {
         <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
           Billing Contact
         </div>
-        <div className="grid grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="First Name" required={!skipped}>
             <input
               type="text"
