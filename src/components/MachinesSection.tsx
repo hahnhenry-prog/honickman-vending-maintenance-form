@@ -203,7 +203,7 @@ function ProductPickerModal({
             value={search}
             onChange={handleSearchChange}
             placeholder="Search by description or item #..."
-            autoFocus
+            autoFocus={!("ontouchstart" in window)}
             className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92]"
           />
         </div>
@@ -1484,7 +1484,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                                 }}
                                 placeholder="XXXXXX"
                                 maxLength={6}
-                                autoFocus
+                                autoFocus={!("ontouchstart" in window)}
                                 className="flex-1 px-3 py-2 text-sm font-mono tracking-widest focus:outline-none bg-white placeholder:text-gray-300"
                               />
                             </div>
@@ -1592,7 +1592,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                                 });
                               }}
                               placeholder="0.00"
-                              autoFocus
+                              autoFocus={!("ontouchstart" in window)}
                               className="flex-1 px-3 py-2 text-sm focus:outline-none"
                             />
                           </div>
