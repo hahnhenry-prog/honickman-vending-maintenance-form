@@ -1399,7 +1399,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                       onChange={(e) =>
                         update(machine.id, { locationName: e.target.value })
                       }
-                      placeholder="e.g. Main Entrance, Food Court, Gym Lobby"
+                      placeholder="e.g. Main Entrance 1"
                       className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
                     />
                     <p className="text-xs text-gray-400 mt-1">
@@ -1437,7 +1437,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
                           />
                           <p className="text-xs text-gray-400 mt-1">
-                            Must be unique within this location (e.g. Main Entrance 1). Max {maxShortName} characters based on Customer Short Name.
+                            Must be unique within this location. Max {maxShortName} characters based on Customer Short Name.
                           </p>
                         </div>
 
