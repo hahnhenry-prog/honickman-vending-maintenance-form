@@ -1439,7 +1439,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                       VIP Account Name
                     </label>
                     <div className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-gray-50 text-gray-700 font-mono tracking-wide select-all">
-                      {`FS ${customerShortName} ${machine.shortName ?? ""}`.trim()}
+                      {`FS ${customerShortName} ${machine.shortName ?? ""}`.trim().toUpperCase()}
                     </div>
                     <p className="text-xs text-gray-400 mt-1">
                       Auto-generated from Customer Short Name and Machine Location Short Name.
