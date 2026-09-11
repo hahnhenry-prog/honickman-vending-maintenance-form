@@ -1075,6 +1075,16 @@ export default function MachinesSection({ machines, onChange }: Props) {
     setExpandedId(m.id);
   };
 
+  const machineHasData = (m: MachineEntry) =>
+    m.locationName.trim() !== "" ||
+    m.shortName.trim() !== "" ||
+    m.machineTypeId !== "" ||
+    m.machineStatus !== "" ||
+    m.assetNumber.trim() !== "" ||
+    m.pricingMode !== "" ||
+    m.singlePrice.trim() !== "" ||
+    Object.keys(m.slots).length > 0;
+
   const remove = (id: string) => {
     onChange(machines.filter((m) => m.id !== id));
     if (expandedId === id) setExpandedId(null);
@@ -1343,7 +1353,14 @@ export default function MachinesSection({ machines, onChange }: Props) {
                     </div>
                   ) : (
                     <button
-                      onClick={(e) => { e.stopPropagation(); setConfirmDeleteId(machine.id); }}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        if (machineHasData(machine)) {
+                          setConfirmDeleteId(machine.id);
+                        } else {
+                          remove(machine.id);
+                        }
+                      }}
                       className="text-gray-300 hover:text-red-400 transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-xl leading-none"
                       title="Remove machine"
                     >
