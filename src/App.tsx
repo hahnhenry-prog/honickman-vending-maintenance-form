@@ -151,6 +151,14 @@ export default function App() {
         e.preventDefault();
         setAdminOpen((o) => !o);
       }
+      if (e.ctrlKey && e.shiftKey && e.key === "S") {
+        e.preventDefault();
+        setStep((s) =>
+          s === "location" ? "billing" :
+          s === "billing" ? "machines" :
+          s === "machines" ? "review" : s
+        );
+      }
     };
     window.addEventListener("keydown", handler);
     return () => window.removeEventListener("keydown", handler);
@@ -364,24 +372,6 @@ export default function App() {
         </button>
 
         <div className="flex items-center gap-3">
-          {step === "location" && (
-            <button
-              onClick={() => setStep("billing")}
-              className="text-xs text-gray-300 hover:text-gray-400 transition-colors underline underline-offset-2"
-              title="Dev shortcut — remove before launch"
-            >
-              [dev] skip →
-            </button>
-          )}
-          {step === "billing" && (
-            <button
-              onClick={() => setStep("machines")}
-              className="text-xs text-gray-300 hover:text-gray-400 transition-colors underline underline-offset-2"
-              title="Dev shortcut — remove before launch"
-            >
-              [dev] skip →
-            </button>
-          )}
           {(() => {
             const errMsg =
               step === "machines" && machines.length > 0 && !canContinueMachines
