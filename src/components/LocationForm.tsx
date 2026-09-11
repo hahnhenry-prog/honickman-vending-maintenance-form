@@ -79,7 +79,7 @@ export default function LocationForm({ data, onChange }: Props) {
               className={inputCls}
             />
             <p className="mt-1.5 text-xs text-gray-400">
-              Truncated description used for the account name in VIP. Max 10 characters
+              Truncated description used for the account name in VIP. Max 10 characters — shorter is better.
               <span className={`ml-2 font-mono ${(data.businessShortName ?? "").length === 10 ? "text-amber-500" : "text-gray-300"}`}>
                 {(data.businessShortName ?? "").length}/10
               </span>
