@@ -1,4 +1,5 @@
 import { LocationData } from "../types";
+import { parsePhone, formatPhone, isValidPhone } from "../lib/phone";
 
 interface Props {
   data: LocationData;
@@ -152,12 +153,15 @@ export default function BillingForm({ data, onChange }: Props) {
           <Field label="Phone" required={!skipped}>
             <input
               type="tel"
-              value={data.billingContactPhone ?? ""}
-              onChange={set("billingContactPhone")}
+              value={formatPhone(data.billingContactPhone ?? "")}
+              onChange={(e) => onChange({ ...data, billingContactPhone: parsePhone(e.target.value) })}
               placeholder="(555) 000-0000"
-              className={skipped ? inputDisabledCls : inputCls}
+              className={`${skipped ? inputDisabledCls : inputCls} ${!skipped && data.billingContactPhone && !isValidPhone(data.billingContactPhone) ? "border-red-300 focus:border-red-400 focus:ring-red-200" : ""}`}
               disabled={skipped}
             />
+            {!skipped && data.billingContactPhone && !isValidPhone(data.billingContactPhone) && (
+              <p className="text-xs text-red-500 mt-1">Enter a 10-digit US phone number.</p>
+            )}
           </Field>
         </div>
       </section>
