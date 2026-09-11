@@ -130,6 +130,7 @@ export interface DbRequest {
   created_at: string;
   status: string;
   business_name: string;
+  business_short_name: string;
   address: string;
   city: string;
   state: string;
@@ -222,6 +223,7 @@ export async function submitRequest(
     body: JSON.stringify({
       status: "submitted",
       business_name: location.businessName,
+      business_short_name: location.businessShortName,
       address: location.address,
       city: location.city,
       state: location.state,
