@@ -401,6 +401,7 @@ function RequestDetail({
           <dl className="grid grid-cols-[160px_1fr] gap-y-3 text-sm">
             <dt className="text-gray-500">Business</dt>
             <dd className="font-medium text-[#0e2d6b]">{request.business_name}</dd>
+            {request.business_short_name && (<><dt className="text-gray-500">Short Name</dt><dd className="font-mono text-gray-700">{request.business_short_name}</dd></>)}
             <dt className="text-gray-500">Address</dt>
             <dd className="text-gray-700">{request.address}, {request.city}, {request.state} {request.zip}</dd>
             <dt className="text-gray-500">On-Site Contact</dt>
