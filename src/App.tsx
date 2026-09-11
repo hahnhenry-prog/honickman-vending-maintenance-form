@@ -352,7 +352,7 @@ export default function App() {
             <BillingForm data={location} onChange={setLocation} />
           )}
           {step === "machines" && (
-            <MachinesSection machines={machines} onChange={setMachines} />
+            <MachinesSection machines={machines} onChange={setMachines} customerShortName={location.businessShortName ?? ""} />
           )}
           {step === "review" && (
             <ReviewSection location={location} machines={machines} />
