@@ -69,6 +69,22 @@ export default function LocationForm({ data, onChange }: Props) {
               className={inputCls}
             />
           </Field>
+          <Field label="Business Short Name" required className="col-span-2">
+            <input
+              type="text"
+              value={data.businessShortName ?? ""}
+              onChange={(e) => onChange({ ...data, businessShortName: e.target.value.slice(0, 10) })}
+              placeholder="e.g. Riverside"
+              maxLength={10}
+              className={inputCls}
+            />
+            <p className="mt-1.5 text-xs text-gray-400">
+              Truncated description used for the account name in VIP. Max 10 characters
+              <span className={`ml-2 font-mono ${(data.businessShortName ?? "").length === 10 ? "text-amber-500" : "text-gray-300"}`}>
+                {(data.businessShortName ?? "").length}/10
+              </span>
+            </p>
+          </Field>
           <Field label="Street Address" required className="col-span-2">
             <input
               type="text"
