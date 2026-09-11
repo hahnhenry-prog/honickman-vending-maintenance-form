@@ -43,7 +43,7 @@ function StatusBadge({ status }: { status: string }) {
 function RoleSelector({ onSelect }: { onSelect: (r: DashboardRole) => void }) {
   return (
     <div className="min-h-full flex flex-col items-center justify-center p-8">
-      <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-6">
+      <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-6">
         Select your role to continue
       </div>
       <div className="grid grid-cols-2 gap-4 w-full max-w-lg">
@@ -56,7 +56,7 @@ function RoleSelector({ onSelect }: { onSelect: (r: DashboardRole) => void }) {
             <div className="font-semibold text-[#0e2d6b] text-sm mb-1 group-hover:text-[#174a92]">
               {role}
             </div>
-            <div className="text-xs text-gray-400 leading-relaxed">
+            <div className="text-xs text-gray-500 leading-relaxed">
               {ROLE_DESCRIPTIONS[role]}
             </div>
           </button>
@@ -94,7 +94,7 @@ function RequestList({
 
   if (loading) {
     return (
-      <div className="flex items-center justify-center flex-1 text-gray-400 text-sm">
+      <div className="flex items-center justify-center flex-1 text-gray-500 text-sm">
         Loading requests…
       </div>
     );
@@ -102,7 +102,7 @@ function RequestList({
 
   if (requests.length === 0) {
     return (
-      <div className="flex flex-col items-center justify-center flex-1 text-gray-400 text-sm gap-2">
+      <div className="flex flex-col items-center justify-center flex-1 text-gray-500 text-sm gap-2">
         <div className="w-10 h-10 rounded-full bg-gray-100 flex items-center justify-center mb-1">
           <svg width="18" height="18" viewBox="0 0 18 18" fill="none">
             <rect x="3" y="2" width="12" height="14" rx="1.5" stroke="currentColor" strokeWidth="1.4"/>
@@ -135,12 +135,12 @@ function RequestList({
             >
               <td className="px-5 py-4">
                 <div className="font-medium text-[#0e2d6b]">{r.business_name}</div>
-                <div className="text-xs text-gray-400">{r.city}, {r.state}</div>
+                <div className="text-xs text-gray-500">{r.city}, {r.state}</div>
               </td>
               <td className="px-5 py-4 text-gray-600">{r.branch || "—"}</td>
               <td className="px-5 py-4 text-gray-600">{r.sales_rep || "—"}</td>
               <td className="px-5 py-4 text-gray-600">{r.machine_count ?? "—"}</td>
-              <td className="px-5 py-4 text-gray-400 text-xs">
+              <td className="px-5 py-4 text-gray-500 text-xs">
                 {new Date(r.created_at).toLocaleDateString("en-US", { month: "short", day: "numeric", year: "numeric" })}
               </td>
               <td className="px-5 py-4">
@@ -179,13 +179,13 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
             >
               {/* Button label */}
               <div className="w-14 flex-shrink-0 text-center">
-                <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider leading-none mb-0.5">BTN</div>
+                <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider leading-none mb-0.5">BTN</div>
                 <div className="text-[11px] font-bold text-gray-600">{btns}</div>
               </div>
               <div className="w-px h-7 bg-gray-200 flex-shrink-0" />
               {/* Columns */}
               <div className="w-12 flex-shrink-0 text-center">
-                <div className="text-[10px] font-semibold text-gray-400 uppercase tracking-wider leading-none mb-0.5">COL</div>
+                <div className="text-[10px] font-semibold text-gray-500 uppercase tracking-wider leading-none mb-0.5">COL</div>
                 <div className="text-[11px] font-bold text-gray-600">
                   {cols.length > 1 ? `${cols[0] + 1}–${cols[cols.length - 1] + 1}` : String(cols[0] + 1)}
                 </div>
@@ -204,7 +204,7 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
                   <div className="flex-shrink-0 font-semibold text-[#174a92] text-[13px] ml-auto">${slot.price}</div>
                 </>
               ) : (
-                <div className="flex-1 text-gray-300 text-xs italic">Empty</div>
+                <div className="flex-1 text-gray-400 text-xs italic">Empty</div>
               )}
             </div>
           );
@@ -218,12 +218,12 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
       <div className="min-w-max text-[10px]">
         <div className="flex gap-1 mb-1 ml-6">
           {Array.from({ length: type.columns }, (_, c) => (
-            <div key={c} className="w-[70px] text-center text-[10px] text-gray-400 font-bold">{colLabel(c)}</div>
+            <div key={c} className="w-[70px] text-center text-[10px] text-gray-500 font-bold">{colLabel(c)}</div>
           ))}
         </div>
         {Array.from({ length: type.rows! }, (_, r) => (
           <div key={r} className="flex items-center gap-1 mb-1.5 break-inside-avoid">
-            <div className="w-5 text-right text-[10px] text-gray-400 font-semibold flex-shrink-0">{r + 1}</div>
+            <div className="w-5 text-right text-[10px] text-gray-500 font-semibold flex-shrink-0">{r + 1}</div>
             {Array.from({ length: type.columns }, (_, c) => {
               const slot = machine.slots?.[`${c}-${r}`];
               const [brand, flavor, size] = (slot?.productDescription ?? "").split(" · ");
@@ -240,7 +240,7 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
                       <div className="text-[7.5px] text-[#174a92] leading-tight">{size}</div>
                       <div className="text-[8px] font-bold text-[#174a92]">${slot.price}</div>
                     </>
-                  ) : <span className="text-gray-300 text-sm">—</span>}
+                  ) : <span className="text-gray-400 text-sm">—</span>}
                 </div>
               );
             })}
@@ -341,7 +341,7 @@ function RequestDetail({
 
   if (loading || !request) {
     return (
-      <div className="flex items-center justify-center flex-1 text-gray-400 text-sm">
+      <div className="flex items-center justify-center flex-1 text-gray-500 text-sm">
         Loading…
       </div>
     );
@@ -380,7 +380,7 @@ function RequestDetail({
             Print
           </button>
           <StatusBadge status={request.status} />
-          <span className="text-xs text-gray-400 font-mono">{request.id.slice(0, 8)}</span>
+          <span className="text-xs text-gray-500 font-mono">{request.id.slice(0, 8)}</span>
         </div>
       </div>
 
@@ -392,12 +392,12 @@ function RequestDetail({
             PCNY — Vending Machine Request
           </div>
           <div className="text-sm text-gray-500">{request.business_name} · {request.address}, {request.city}, {request.state} {request.zip}</div>
-          <div className="text-xs text-gray-400 mt-0.5">Printed {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
+          <div className="text-xs text-gray-500 mt-0.5">Printed {new Date().toLocaleDateString("en-US", { month: "long", day: "numeric", year: "numeric" })}</div>
         </div>
 
         {/* Customer Details */}
         <section className="bg-white rounded-xl border border-gray-200 p-6 break-inside-avoid">
-          <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Customer Details</div>
+          <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Customer Details</div>
           <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
             <dt className="text-gray-500">Business</dt>
             <dd className="font-medium text-[#0e2d6b]">{request.business_name}</dd>
@@ -420,7 +420,7 @@ function RequestDetail({
 
         {/* Billing Details */}
         <section className="bg-white rounded-xl border border-gray-200 p-6 break-inside-avoid">
-          <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">Billing Details</div>
+          <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Billing Details</div>
           {request.billing_skipped ? (
             <div className="inline-flex items-center gap-2 px-3 py-1.5 bg-amber-50 border border-amber-200 rounded-lg text-xs text-amber-700 font-medium">
               Vendor setup pending
@@ -456,7 +456,7 @@ function RequestDetail({
                   <div className="font-semibold text-[#0e2d6b]">
                     {idx + 1}. {machine.location_name}
                   </div>
-                  <div className="text-xs text-gray-400 mt-0.5">
+                  <div className="text-xs text-gray-500 mt-0.5">
                     {type?.label ?? machine.machine_type_id}
                     {" · "}
                     {machine.machine_status === "existing" ? "Existing machine" : "New placement"}
@@ -490,12 +490,12 @@ function RequestDetail({
                           <div className="mt-1.5 flex items-center gap-1.5 text-[11px]">
                             {changed ? (
                               <>
-                                <span className="text-gray-400 line-through font-mono text-[12px]">{original}</span>
+                                <span className="text-gray-500 line-through font-mono text-[12px]">{original}</span>
                                 <span className="text-amber-500">→</span>
                                 <span className="text-amber-600 font-mono font-semibold text-[12px]">{val}</span>
                               </>
                             ) : (
-                              <span className="text-gray-400">Submitted: <span className="font-mono">{original}</span></span>
+                              <span className="text-gray-500">Submitted: <span className="font-mono">{original}</span></span>
                             )}
                           </div>
                         )}
@@ -519,7 +519,7 @@ function RequestDetail({
               {/* Planogram */}
               {(role === "Route Accounting" || role === "Vending" || role === "MDM") && (
                 <div className="pt-2 border-t border-gray-100">
-                  <div className="text-xs font-semibold text-gray-400 uppercase tracking-wider mb-3">Planogram</div>
+                  <div className="text-xs font-semibold text-gray-500 uppercase tracking-wider mb-3">Planogram</div>
                   <ReadOnlyPlanogram machine={machine} />
                 </div>
               )}
@@ -636,7 +636,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
                  role === "MDM" ? "Ready for MDM Processing" :
                  "All Requests"}
               </div>
-              <div className="text-xs text-gray-400 mt-0.5">
+              <div className="text-xs text-gray-500 mt-0.5">
                 {role === "Vending" ? "Verify asset IDs and add card reader serials" :
                  role === "MDM" ? "Download VIP data and mark requests complete" :
                  "Click a request to view details"}
