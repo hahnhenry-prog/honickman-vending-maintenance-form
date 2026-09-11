@@ -59,6 +59,12 @@ export default function ReviewSection({ location, machines }: Props) {
         <dl className="grid grid-cols-[140px_1fr] gap-y-3 text-sm">
           <dt className="text-gray-500">Business</dt>
           <dd className="font-medium text-[#0e2d6b]">{location.businessName}</dd>
+          {location.businessShortName && (
+            <>
+              <dt className="text-gray-500">Short Name</dt>
+              <dd className="font-mono text-[#0e2d6b]">{location.businessShortName}</dd>
+            </>
+          )}
           <dt className="text-gray-500">Address</dt>
           <dd className="text-[#0e2d6b]">
             {location.address}, {location.city}
