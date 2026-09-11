@@ -151,7 +151,7 @@ export default function App() {
         e.preventDefault();
         setAdminOpen((o) => !o);
       }
-      if (e.ctrlKey && e.shiftKey && e.key === "S") {
+      if (e.ctrlKey && e.shiftKey && e.key === "K") {
         e.preventDefault();
         setStep((s) =>
           s === "location" ? "billing" :
