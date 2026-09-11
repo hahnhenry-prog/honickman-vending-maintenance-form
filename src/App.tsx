@@ -132,6 +132,7 @@ export default function App() {
   const [submitError, setSubmitError] = useState<string | null>(null);
   const [requestId, setRequestId] = useState<string | null>(null);
   const [adminOpen, setAdminOpen] = useState(false);
+  const [errorTipOpen, setErrorTipOpen] = useState(false);
   const [dashboardOpen, setDashboardOpen] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const menuRef = useRef<HTMLDivElement>(null);
@@ -387,18 +388,33 @@ export default function App() {
               [dev] skip →
             </button>
           )}
-          {step === "machines" && machines.length > 0 && !canContinueMachines && (
-            <span className="text-xs text-amber-600">
-              {machines.some((m) => m.locationName.trim() === "" || m.machineTypeId === "")
-                ? "All machines need a name and type"
-                : new Set(machines.map((m) => m.locationName.trim().toLowerCase())).size !== machines.length
-                  ? "Location names must be unique"
-                  : "All slots must be configured before continuing"}
-            </span>
-          )}
-          {submitError && (
-            <span className="text-xs text-red-500">{submitError}</span>
-          )}
+          {(() => {
+            const errMsg =
+              step === "machines" && machines.length > 0 && !canContinueMachines
+                ? machines.some((m) => m.locationName.trim() === "" || m.machineTypeId === "")
+                  ? "All machines need a name and type"
+                  : new Set(machines.map((m) => m.locationName.trim().toLowerCase())).size !== machines.length
+                    ? "Location names must be unique"
+                    : "All slots must be configured before continuing"
+                : submitError ?? null;
+            if (!errMsg) { if (errorTipOpen) setErrorTipOpen(false); return null; }
+            return (
+              <div className="relative">
+                <button
+                  onClick={() => setErrorTipOpen((o) => !o)}
+                  className="w-7 h-7 rounded-full bg-amber-100 border border-amber-300 text-amber-600 flex items-center justify-center text-sm font-bold"
+                >
+                  !
+                </button>
+                {errorTipOpen && (
+                  <div className="absolute bottom-full right-0 mb-2 w-56 bg-gray-900 text-white text-xs rounded-lg px-3 py-2 leading-snug z-50">
+                    {errMsg}
+                    <div className="absolute top-full right-3 border-4 border-transparent border-t-gray-900" />
+                  </div>
+                )}
+              </div>
+            );
+          })()}
           {step !== "review" ? (
             <button
               onClick={next}
@@ -413,7 +429,11 @@ export default function App() {
               }
               className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
-              {step === "machines" ? "Review Request →" : step === "billing" ? "Configure Machines →" : "Continue →"}
+              {step === "machines"
+                ? <><span className="sm:hidden">Review →</span><span className="hidden sm:inline">Review Request →</span></>
+                : step === "billing"
+                  ? <><span className="sm:hidden">Configure →</span><span className="hidden sm:inline">Configure Machines →</span></>
+                  : "Continue →"}
             </button>
           ) : (
             <button
