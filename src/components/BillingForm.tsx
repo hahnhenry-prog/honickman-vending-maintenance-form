@@ -63,7 +63,7 @@ export default function BillingForm({ data, onChange }: Props) {
       </div>
 
       <section className={`bg-white rounded-xl border border-gray-200 p-6 space-y-5 transition-opacity ${skipped ? "opacity-50 pointer-events-none" : ""}`}>
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
           Account
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
@@ -92,7 +92,7 @@ export default function BillingForm({ data, onChange }: Props) {
 
       {/* Commission Rate — always active */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-5">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-5">
           Commission
         </div>
         <Field label="Commission Rate" required>
@@ -118,7 +118,7 @@ export default function BillingForm({ data, onChange }: Props) {
       </section>
 
       <section className={`bg-white rounded-xl border border-gray-200 p-6 space-y-5 transition-opacity ${skipped ? "opacity-50 pointer-events-none" : ""}`}>
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
           Billing Contact
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
