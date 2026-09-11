@@ -512,6 +512,9 @@ function RequestDetail({
                   <div className="font-semibold text-[#0e2d6b]">
                     {idx + 1}. {machine.location_name}
                   </div>
+                  {machine.vip_account_name && (
+                    <div className="text-xs font-mono text-gray-500 mt-0.5">{machine.vip_account_name}</div>
+                  )}
                   <div className="text-xs text-gray-500 mt-0.5">
                     {type?.label ?? machine.machine_type_id}
                     {" · "}
