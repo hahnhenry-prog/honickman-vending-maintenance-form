@@ -1326,7 +1326,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                   {/* Copy machine */}
                   <button
                     onClick={(e) => { e.stopPropagation(); duplicate(machine.id); }}
-                    className="text-gray-300 hover:text-[#174a92] transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100"
+                    className="text-gray-400 hover:text-[#174a92] transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100"
                     title="Duplicate machine"
                   >
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1361,7 +1361,7 @@ export default function MachinesSection({ machines, onChange }: Props) {
                           remove(machine.id);
                         }
                       }}
-                      className="text-gray-300 hover:text-red-400 transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-xl leading-none"
+                      className="text-gray-400 hover:text-red-400 transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100 text-xl leading-none"
                       title="Remove machine"
                     >
                       ×
