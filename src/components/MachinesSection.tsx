@@ -1409,42 +1409,56 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   </div>
 
                   {/* Short name */}
-                  <div className="max-w-sm">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      Machine Location Short Name
-                      <span className="text-[#174a92] ml-0.5">*</span>
-                    </label>
-                    <input
-                      type="text"
-                      value={machine.shortName ?? ""}
-                      onChange={(e) =>
-                        update(machine.id, {
-                          shortName: e.target.value.slice(0, 12),
-                        })
-                      }
-                      maxLength={12}
-                      placeholder="e.g. CAFETERIA1"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
-                    />
-                    <p className="text-xs text-gray-400 mt-1">
-                      Must be unique within this location. Truncated description
-                      used for the account name in VIP. Max 12 characters (
-                      {12 - (machine.shortName?.length ?? 0)} remaining).
-                    </p>
-                  </div>
+                  {(() => {
+                    const VIP_MAX = 25;
+                    const prefix = `FS ${customerShortName} `;
+                    const maxShortName = Math.max(0, VIP_MAX - prefix.length);
+                    const shortName = machine.shortName ?? "";
+                    const vipName = `FS ${customerShortName} ${shortName}`.trim().toUpperCase();
+                    const vipLen = vipName.length;
+                    const atLimit = shortName.length >= maxShortName;
+                    return (
+                      <>
+                        <div className="max-w-sm">
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            Machine Location Short Name
+                            <span className="text-[#174a92] ml-0.5">*</span>
+                          </label>
+                          <input
+                            type="text"
+                            value={shortName}
+                            onChange={(e) =>
+                              update(machine.id, {
+                                shortName: e.target.value.slice(0, maxShortName),
+                              })
+                            }
+                            maxLength={maxShortName}
+                            placeholder="e.g. CAFETERIA1"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
+                          />
+                          <p className="text-xs text-gray-400 mt-1">
+                            Must be unique within this location. Max {maxShortName} characters based on Customer Short Name.
+                          </p>
+                        </div>
 
-                  {/* VIP Account Name */}
-                  <div className="max-w-sm">
-                    <label className="block text-sm font-medium text-gray-700 mb-1.5">
-                      VIP Account Name
-                    </label>
-                    <div className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-gray-50 text-gray-700 font-mono tracking-wide select-all">
-                      {`FS ${customerShortName} ${machine.shortName ?? ""}`.trim().toUpperCase()}
-                    </div>
-                    <p className="text-xs text-gray-400 mt-1">
-                      Auto-generated from Customer Short Name and Machine Location Short Name.
-                    </p>
-                  </div>
+                        {/* VIP Account Name */}
+                        <div className="max-w-sm">
+                          <label className="block text-sm font-medium text-gray-700 mb-1.5">
+                            VIP Account Name
+                          </label>
+                          <div className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm bg-gray-50 text-gray-700 font-mono tracking-wide select-all">
+                            {vipName}
+                          </div>
+                          <p className="text-xs mt-1">
+                            <span className={atLimit ? "text-amber-500 font-medium" : "text-gray-400"}>
+                              {vipLen}/{VIP_MAX} characters
+                            </span>
+                            <span className="text-gray-400"> — auto-generated from Customer and Location Short Names.</span>
+                          </p>
+                        </div>
+                      </>
+                    );
+                  })()}
 
                   {/* Machine type */}
                   <div>
