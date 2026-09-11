@@ -1455,6 +1455,9 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             </span>
                             <span className="text-gray-400"> — auto-generated from Customer and Location Short Names.</span>
                           </p>
+                          <p className="text-xs text-gray-400 mt-1.5 italic">
+                            Tip: a shorter customer name leaves more room for a descriptive location name, making it easier for drivers to identify placement.
+                          </p>
                         </div>
                       </>
                     );
