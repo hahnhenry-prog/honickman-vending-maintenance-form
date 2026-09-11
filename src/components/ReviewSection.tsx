@@ -38,7 +38,7 @@ export default function ReviewSection({ location, machines }: Props) {
           },
         ].map(({ label, value, text }) => (
           <div key={label} className="bg-white rounded-xl border border-gray-200 px-5 py-4">
-            <div className="text-xs text-gray-400 font-medium uppercase tracking-wider mb-1">
+            <div className="text-xs text-gray-500 font-medium uppercase tracking-wider mb-1">
               {label}
             </div>
             <div
@@ -53,7 +53,7 @@ export default function ReviewSection({ location, machines }: Props) {
 
       {/* Location */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
           Location
         </div>
         <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
@@ -117,7 +117,7 @@ export default function ReviewSection({ location, machines }: Props) {
       {(location.billingSkipped || location.apVendorNumber || location.billingAccountName || location.commissionRate || location.billingContactFirstName || location.billingContactEmail) && (
         <section className={`bg-white rounded-xl border p-6 ${location.billingSkipped ? "border-amber-300 bg-amber-50" : "border-gray-200"}`}>
           <div className="flex items-center gap-3 mb-4">
-            <div className="text-xs font-semibold uppercase tracking-widest text-gray-400">
+            <div className="text-xs font-semibold uppercase tracking-widest text-gray-500">
               Billing
             </div>
             {location.billingSkipped && (
@@ -171,7 +171,7 @@ export default function ReviewSection({ location, machines }: Props) {
 
       {/* Machines */}
       <section className="bg-white rounded-xl border border-gray-200 p-6">
-        <div className="text-xs font-semibold uppercase tracking-widest text-gray-400 mb-4">
+        <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">
           Machines ({totalMachines})
         </div>
         <div className="space-y-4">
@@ -209,7 +209,7 @@ export default function ReviewSection({ location, machines }: Props) {
                   <div className="font-medium text-[#0e2d6b] text-sm">
                     {machine.locationName}
                   </div>
-                  <div className="text-xs text-gray-400 mt-0.5 flex items-center gap-2">
+                  <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-2">
                     <span>{type?.label ?? "—"}</span>
                     {type && (
                       <>
