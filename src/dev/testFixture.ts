@@ -2,6 +2,7 @@ import { LocationData, MachineEntry } from "../types";
 
 export const fixtureLocation: LocationData = {
   businessName: "Riverside Amusement Park",
+  businessShortName: "Riverside",
   address: "123 Commerce Blvd",
   city: "Bronx",
   state: "NY",
