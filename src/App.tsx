@@ -299,12 +299,6 @@ export default function App() {
         <div className="flex items-center gap-4">
           <div className="text-right">
             <div
-              className="text-[10px] uppercase tracking-widest text-white/50 leading-none mb-0.5"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
-            >
-              Internal Operations
-            </div>
-            <div
               className="text-sm font-semibold leading-tight"
               style={{ fontFamily: "'Outfit', sans-serif" }}
             >
