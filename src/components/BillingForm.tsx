@@ -97,7 +97,7 @@ export default function BillingForm({ data, onChange }: Props) {
           Commission
         </div>
         <Field label="Commission Rate" required>
-          <div className="flex items-center border border-gray-300 rounded-md overflow-hidden focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors w-36">
+          <div className="flex items-center border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors w-44">
             <input
               type="number"
               min="0"
