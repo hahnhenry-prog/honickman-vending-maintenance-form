@@ -87,12 +87,12 @@ function StepIndicator({ current }: { current: FormStep }) {
                         ? "text-[#0e2d6b]"
                         : done
                           ? "text-[#174a92]"
-                          : "text-gray-400"
+                          : "text-gray-500"
                     }`}
                   >
                     {step.label}
                   </div>
-                  <div className="text-xs text-gray-400">{step.sub}</div>
+                  <div className="text-xs text-gray-500">{step.sub}</div>
                 </div>
               </div>
               {i < STEPS.length - 1 && (
