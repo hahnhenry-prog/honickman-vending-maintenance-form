@@ -51,9 +51,9 @@ function RoleSelector({ onSelect }: { onSelect: (r: DashboardRole) => void }) {
           <button
             key={role}
             onClick={() => onSelect(role)}
-            className="text-left bg-white border border-gray-200 rounded-xl p-5 hover:border-[#174a92] hover:shadow-sm transition-all group"
+            className="text-left bg-white border border-gray-200 rounded-xl p-5 hover:border-[var(--color-primary)] hover:shadow-sm transition-all group"
           >
-            <div className="font-semibold text-[#0e2d6b] text-sm mb-1 group-hover:text-[#174a92]">
+            <div className="font-semibold text-[var(--color-secondary)] text-sm mb-1 group-hover:text-[var(--color-primary)]">
               {role}
             </div>
             <div className="text-xs text-gray-500 leading-relaxed">
@@ -95,7 +95,7 @@ function SalesRepSelector({ onSelect }: { onSelect: (name: string) => void }) {
       <div className="max-w-lg mx-auto px-6 py-10">
         <div className="text-center mb-8">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">Sales</div>
-          <h2 className="text-xl font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
             Select Your Name
           </h2>
           <p className="text-sm text-gray-500 mt-1">Select your name to see your submitted requests.</p>
@@ -108,7 +108,7 @@ function SalesRepSelector({ onSelect }: { onSelect: (name: string) => void }) {
               <button
                 key={name}
                 onClick={() => onSelect(name)}
-                className="w-full text-left px-5 py-4 bg-white border border-gray-200 rounded-xl hover:border-[#174a92] hover:bg-blue-50 transition-all text-sm font-medium text-[#0e2d6b]"
+                className="w-full text-left px-5 py-4 bg-white border border-gray-200 rounded-xl hover:border-[var(--color-primary)] hover:bg-blue-50 transition-all text-sm font-medium text-[var(--color-secondary)]"
               >
                 {name}
               </button>
@@ -191,7 +191,7 @@ function RequestList({
               className={`cursor-pointer hover:bg-blue-50 transition-colors ${i > 0 ? "border-t border-gray-100" : ""}`}
             >
               <td className="px-5 py-4">
-                <div className="font-medium text-[#0e2d6b]">{r.business_name}</div>
+                <div className="font-medium text-[var(--color-secondary)]">{r.business_name}</div>
                 <div className="text-xs text-gray-500">{r.city}, {r.state}</div>
               </td>
               <td className="px-5 py-4 text-gray-600">{r.branch || "—"}</td>
@@ -232,7 +232,7 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
           return (
             <div
               key={btns}
-              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${slot ? "bg-[#174a92]/5 border border-[#174a92]/15" : "bg-gray-50 border border-dashed border-gray-200"}`}
+              className={`flex items-center gap-3 px-3 py-2 rounded-lg text-sm ${slot ? "bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/15" : "bg-gray-50 border border-dashed border-gray-200"}`}
             >
               {/* Button label */}
               <div className="w-14 flex-shrink-0 text-center">
@@ -254,11 +254,11 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
                     <img src={slot.productImageUrl} alt="" className="w-8 h-8 object-contain flex-shrink-0" />
                   )}
                   <div className="flex-1 min-w-0 flex items-center gap-2 flex-wrap">
-                    <span className="font-semibold text-[#0e2d6b] text-[12px]">{brand}</span>
+                    <span className="font-semibold text-[var(--color-secondary)] text-[12px]">{brand}</span>
                     {flavor && <span className="text-gray-500 text-[12px]">{flavor}</span>}
-                    {size && <span className="text-[#174a92] text-[11px]">{size}</span>}
+                    {size && <span className="text-[var(--color-primary)] text-[11px]">{size}</span>}
                   </div>
-                  <div className="flex-shrink-0 font-semibold text-[#174a92] text-[13px] ml-auto">${slot.price}</div>
+                  <div className="flex-shrink-0 font-semibold text-[var(--color-primary)] text-[13px] ml-auto">${slot.price}</div>
                 </>
               ) : (
                 <div className="flex-1 text-gray-400 text-xs italic">Empty</div>
@@ -285,7 +285,7 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
               const slot = machine.slots?.[`${c}-${r}`];
               const [brand, flavor, size] = (slot?.productDescription ?? "").split(" · ");
               return (
-                <div key={c} className={`w-[70px] h-[88px] rounded-lg border flex flex-col items-center justify-center text-center px-1 py-1.5 gap-px ${slot ? "border-[#174a92]/30 bg-[#174a92]/5" : "border-dashed border-gray-200"}`}>
+                <div key={c} className={`w-[70px] h-[88px] rounded-lg border flex flex-col items-center justify-center text-center px-1 py-1.5 gap-px ${slot ? "border-[var(--color-primary)]/30 bg-[var(--color-primary)]/5" : "border-dashed border-gray-200"}`}>
                   {slot ? (
                     <>
                       {slot.productImageUrl
@@ -294,8 +294,8 @@ function ReadOnlyPlanogram({ machine }: { machine: DbMachine }) {
                       }
                       <div className="text-[8px] font-semibold text-gray-800 w-full leading-tight truncate">{brand}</div>
                       {flavor && <div className="text-[7px] text-gray-500 w-full leading-tight truncate">{flavor}</div>}
-                      <div className="text-[7.5px] text-[#174a92] leading-tight">{size}</div>
-                      <div className="text-[8px] font-bold text-[#174a92]">${slot.price}</div>
+                      <div className="text-[7.5px] text-[var(--color-primary)] leading-tight">{size}</div>
+                      <div className="text-[8px] font-bold text-[var(--color-primary)]">${slot.price}</div>
                     </>
                   ) : <span className="text-gray-400 text-sm">—</span>}
                 </div>
@@ -404,7 +404,7 @@ function RequestDetail({
     );
   }
 
-  const inputCls = "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92]";
+  const inputCls = "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)]";
 
   const vendingReady = role === "Vending" && machines.every((m) => {
     const asset = edits[m.id]?.asset_number ?? m.asset_number;
@@ -445,7 +445,7 @@ function RequestDetail({
 
         {/* Print-only header */}
         <div className="hidden print:block mb-4">
-          <div className="text-lg font-bold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <div className="text-lg font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
             PCNY — Vending Machine Request
           </div>
           <div className="text-sm text-gray-500">{request.business_name} · {request.address}, {request.city}, {request.state} {request.zip}</div>
@@ -457,7 +457,7 @@ function RequestDetail({
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-4">Customer Details</div>
           <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[160px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
             <dt className="text-gray-500">Business</dt>
-            <dd className="font-medium text-[#0e2d6b]">{request.business_name}</dd>
+            <dd className="font-medium text-[var(--color-secondary)]">{request.business_name}</dd>
             <dt className="text-gray-500">Address</dt>
             <dd className="text-gray-700">{request.address}, {request.city}, {request.state} {request.zip}</dd>
             <dt className="text-gray-500">On-Site Contact</dt>
@@ -509,7 +509,7 @@ function RequestDetail({
             <section key={machine.id} className="bg-white rounded-xl border border-gray-200 p-6 space-y-4 break-inside-avoid">
               <div className="flex items-center justify-between">
                 <div>
-                  <div className="font-semibold text-[#0e2d6b]">
+                  <div className="font-semibold text-[var(--color-secondary)]">
                     {idx + 1}. {machine.location_name}
                   </div>
                   {machine.vip_account_name && (
@@ -536,7 +536,7 @@ function RequestDetail({
                     return (
                       <div key={field}>
                         <label className="block text-xs font-medium text-gray-600 mb-1.5">
-                          {label} <span className="text-[#174a92]">*</span>
+                          {label} <span className="text-[var(--color-primary)]">*</span>
                         </label>
                         <input
                           type="text"
@@ -594,7 +594,7 @@ function RequestDetail({
               <button
                 onClick={saveEdits}
                 disabled={saving}
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold border border-[#174a92] text-[#174a92] hover:bg-[#174a92]/5 disabled:opacity-50 transition-colors"
+                className="px-5 py-2.5 rounded-lg text-sm font-semibold border border-[var(--color-primary)] text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5 disabled:opacity-50 transition-colors"
               >
                 {saving ? "Saving…" : "Save Changes"}
               </button>
@@ -604,7 +604,7 @@ function RequestDetail({
                 onClick={advanceStatus}
                 disabled={advancing || !vendingReady}
                 title={!vendingReady ? "All machines must have asset numbers and card reader serials" : undefined}
-                className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 {advancing ? "Updating…" : "Mark Ready for MDM →"}
               </button>
@@ -620,7 +620,7 @@ function RequestDetail({
                 <button
                   onClick={advanceStatus}
                   disabled={advancing}
-                  className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] disabled:opacity-40 transition-colors"
+                  className="px-5 py-2.5 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] disabled:opacity-40 transition-colors"
                 >
                   {advancing ? "Updating…" : "Mark Complete →"}
                 </button>
@@ -656,7 +656,7 @@ function PasswordGate({ role, onSuccess, onBack }: { role: DashboardRole; onSucc
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">{role}</div>
-          <h2 className="text-xl font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
             Enter Password
           </h2>
           <p className="text-sm text-gray-500 mt-1">This view is restricted to operations staff.</p>
@@ -669,12 +669,12 @@ function PasswordGate({ role, onSuccess, onBack }: { role: DashboardRole; onSucc
             onKeyDown={(e) => e.key === "Enter" && submit()}
             placeholder="Password"
             autoFocus={!("ontouchstart" in window)}
-            className={`w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-colors ${error ? "border-red-400 focus:ring-red-200" : "border-gray-300 focus:ring-[#174a92]/25 focus:border-[#174a92]"}`}
+            className={`w-full border rounded-lg px-4 py-2.5 text-sm focus:outline-none focus:ring-2 transition-colors ${error ? "border-red-400 focus:ring-red-200" : "border-gray-300 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)]"}`}
           />
           {error && <p className="text-xs text-red-500">Incorrect password. Please try again.</p>}
           <button
             onClick={submit}
-            className="w-full py-2.5 bg-[#174a92] text-white text-sm font-semibold rounded-lg hover:bg-[#0e3585] transition-colors"
+            className="w-full py-2.5 bg-[var(--color-primary)] text-white text-sm font-semibold rounded-lg hover:bg-[var(--color-primary-dark)] transition-colors"
           >
             Continue
           </button>
@@ -706,7 +706,7 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
   return (
     <div className="min-h-full flex flex-col">
       {/* Header */}
-      <header className="text-white px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "#174a92" }}>
+      <header className="text-white px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "var(--color-primary)" }}>
         <div className="flex items-center gap-4">
           <button
             onClick={onClose}
@@ -758,14 +758,14 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
         <>
           <div className="bg-white border-b border-gray-200 px-8 py-4 flex items-center justify-between flex-shrink-0">
             <div>
-              <div className="font-semibold text-[#0e2d6b] text-sm">
+              <div className="font-semibold text-[var(--color-secondary)] text-sm">
                 {role === "Sales" ? `${salesRep}'s Requests` :
                  role === "Vending" ? "Pending Vending Review" :
                  role === "MDM" ? "Ready for MDM Processing" :
                  "All Requests"}
               </div>
               <div className="text-xs text-gray-500 mt-0.5">
-                {role === "Sales" ? <button onClick={() => setSalesRep(null)} className="hover:text-[#174a92] transition-colors underline underline-offset-2">Not you? Switch name</button> :
+                {role === "Sales" ? <button onClick={() => setSalesRep(null)} className="hover:text-[var(--color-primary)] transition-colors underline underline-offset-2">Not you? Switch name</button> :
                  role === "Vending" ? "Verify asset IDs and add card reader serials" :
                  role === "MDM" ? "Download VIP data and mark requests complete" :
                  "Click a request to view details"}

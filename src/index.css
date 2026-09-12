@@ -11,7 +11,7 @@ body,
 body {
   font-family: 'Inter', system-ui, sans-serif;
   background-color: #f0eeeb;
-  color: #0e2d6b;
+  color: var(--color-secondary);
   -webkit-font-smoothing: antialiased;
 }
 

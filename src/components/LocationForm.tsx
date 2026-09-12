@@ -22,7 +22,7 @@ function Field({
     <div className={className}>
       <label className="block text-sm font-medium text-gray-700 mb-1.5">
         {label}
-        {required && <span className="text-[#174a92] ml-0.5">*</span>}
+        {required && <span className="text-[var(--color-primary)] ml-0.5">*</span>}
       </label>
       {children}
     </div>
@@ -30,7 +30,7 @@ function Field({
 }
 
 const inputCls =
-  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors placeholder:text-gray-400";
+  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors placeholder:text-gray-400";
 
 export default function LocationForm({ data, onChange }: Props) {
   const set =
@@ -46,7 +46,7 @@ export default function LocationForm({ data, onChange }: Props) {
     <div className="space-y-6">
       <div>
         <h2
-          className="text-2xl font-semibold text-[#0e2d6b]"
+          className="text-2xl font-semibold text-[var(--color-secondary)]"
           style={{ fontFamily: "'Outfit', sans-serif" }}
         >
           Customer Details
