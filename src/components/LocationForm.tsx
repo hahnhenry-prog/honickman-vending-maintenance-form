@@ -1,4 +1,5 @@
 import { LocationData } from "../types";
+import { Field, Input } from "@honickman/ui";
 import { parsePhone, formatPhone, isValidPhone } from "../lib/phone";
 
 
@@ -6,31 +7,6 @@ interface Props {
   data: LocationData;
   onChange: (data: LocationData) => void;
 }
-
-function Field({
-  label,
-  required,
-  children,
-  className = "",
-}: {
-  label: string;
-  required?: boolean;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-        {label}
-        {required && <span className="text-[var(--color-primary)] ml-0.5">*</span>}
-      </label>
-      {children}
-    </div>
-  );
-}
-
-const inputCls =
-  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors placeholder:text-gray-400";
 
 export default function LocationForm({ data, onChange }: Props) {
   const set =
@@ -62,22 +38,20 @@ export default function LocationForm({ data, onChange }: Props) {
         </div>
         <div className="space-y-4">
           <Field label="Business Name" required>
-            <input
+            <Input
               type="text"
               value={data.businessName}
               onChange={set("businessName")}
               placeholder="e.g. Riverside Amusement Park"
-              className={inputCls}
             />
           </Field>
           <Field label="Business Short Name" required>
-            <input
+            <Input
               type="text"
               value={data.businessShortName ?? ""}
               onChange={(e) => onChange({ ...data, businessShortName: e.target.value.slice(0, 10) })}
               placeholder="e.g. Riverside"
               maxLength={10}
-              className={inputCls}
             />
             <p className="mt-1.5 text-xs text-gray-500">
               Truncated description used for the account name in VIP. Max 10 characters — shorter is better.
@@ -87,36 +61,33 @@ export default function LocationForm({ data, onChange }: Props) {
             </p>
           </Field>
           <Field label="Street Address" required>
-            <input
+            <Input
               type="text"
               value={data.address}
               onChange={set("address")}
               placeholder="123 Commerce Blvd"
-              className={inputCls}
             />
           </Field>
           <Field label="City" required>
-            <input
+            <Input
               type="text"
               value={data.city}
               onChange={set("city")}
-              className={inputCls}
             />
           </Field>
           <div className="grid grid-cols-2 gap-3">
             <Field label="State">
-              <div className={`${inputCls} bg-gray-50 text-gray-700 font-medium cursor-not-allowed`}>
+              <div className="hui-input bg-gray-50 text-gray-700 font-medium cursor-not-allowed">
                 NY
               </div>
             </Field>
             <Field label="ZIP" required>
-              <input
+              <Input
                 type="text"
                 value={data.zip}
                 onChange={set("zip")}
                 maxLength={10}
                 placeholder="e.g. 10001"
-                className={inputCls}
               />
             </Field>
           </div>
@@ -133,20 +104,19 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="Contact Name" required>
-              <input
+              <Input
                 type="text"
                 value={data.contactName}
                 onChange={set("contactName")}
-                className={inputCls}
               />
             </Field>
             <Field label="Phone" required>
-              <input
+              <Input
                 type="tel"
                 value={formatPhone(data.contactPhone)}
                 onChange={(e) => onChange({ ...data, contactPhone: parsePhone(e.target.value) })}
                 placeholder="(555) 000-0000"
-                className={`${inputCls} ${data.contactPhone && !isValidPhone(data.contactPhone) ? "border-red-300 focus:border-red-400 focus:ring-red-200" : ""}`}
+                invalid={!!(data.contactPhone && !isValidPhone(data.contactPhone))}
               />
               {data.contactPhone && !isValidPhone(data.contactPhone) && (
                 <p className="text-xs text-red-500 mt-1">Enter a 10-digit US phone number.</p>
@@ -154,11 +124,10 @@ export default function LocationForm({ data, onChange }: Props) {
             </Field>
           </div>
           <Field label="Email">
-            <input
+            <Input
               type="email"
               value={data.contactEmail}
               onChange={set("contactEmail")}
-              className={inputCls}
             />
           </Field>
         </div>
@@ -171,16 +140,15 @@ export default function LocationForm({ data, onChange }: Props) {
         <div className="space-y-4">
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             <Field label="PCNY Point of Contact" required>
-              <input
+              <Input
                 type="text"
                 value={data.salesRep}
                 onChange={set("salesRep")}
                 placeholder="Your name"
-                className={inputCls}
               />
             </Field>
             <Field label="Approved By" required>
-              <select value={data.approvedBy ?? ""} onChange={set("approvedBy")} className={inputCls}>
+              <select value={data.approvedBy ?? ""} onChange={set("approvedBy")} className="hui-input">
                 <option value="">Select approver…</option>
                 <option>Joe Hayes</option>
                 <option>Steve Cavallo</option>
@@ -189,7 +157,7 @@ export default function LocationForm({ data, onChange }: Props) {
               </select>
             </Field>
             <Field label="Branch" required>
-              <select value={data.branch ?? ""} onChange={set("branch")} className={inputCls}>
+              <select value={data.branch ?? ""} onChange={set("branch")} className="hui-input">
                 <option value="">Select branch…</option>
                 <option value="Bronx">Bronx</option>
                 <option value="Queens">Queens</option>
@@ -198,12 +166,11 @@ export default function LocationForm({ data, onChange }: Props) {
               </select>
             </Field>
             <Field label="Distributor">
-              <input
+              <Input
                 type="text"
                 value={data.distributor ?? ""}
                 onChange={set("distributor")}
                 placeholder="Distributor name"
-                className={inputCls}
               />
             </Field>
           </div>
@@ -213,7 +180,7 @@ export default function LocationForm({ data, onChange }: Props) {
               onChange={set("notes")}
               rows={3}
               placeholder="Any special instructions or context for the operations team..."
-              className={`${inputCls} resize-none`}
+              className="hui-input resize-none"
             />
           </Field>
         </div>

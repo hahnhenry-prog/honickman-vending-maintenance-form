@@ -1,4 +1,5 @@
 import { useState, useEffect, useCallback } from "react";
+import { Input } from "@honickman/ui";
 import {
   DbRequest, DbMachine,
   fetchRequests, fetchRequestDetail,
@@ -404,9 +405,7 @@ function RequestDetail({
     );
   }
 
-  const inputCls = "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)]";
-
-  const vendingReady = role === "Vending" && machines.every((m) => {
+    const vendingReady = role === "Vending" && machines.every((m) => {
     const asset = edits[m.id]?.asset_number ?? m.asset_number;
     const cr = edits[m.id]?.card_reader_serial ?? m.card_reader_serial;
     return asset && cr;
@@ -538,12 +537,12 @@ function RequestDetail({
                         <label className="block text-xs font-medium text-gray-600 mb-1.5">
                           {label} <span className="text-[var(--color-primary)]">*</span>
                         </label>
-                        <input
+                        <Input
                           type="text"
                           value={val}
                           onChange={(e) => setEdit(machine.id, field, e.target.value)}
                           placeholder={placeholder}
-                          className={`${inputCls} ${changed ? "border-amber-400 ring-1 ring-amber-300" : ""}`}
+                          className={changed ? "border-amber-400 ring-1 ring-amber-300" : ""}
                         />
                         {original && (
                           <div className="mt-1.5 flex items-center gap-1.5 text-[11px]">

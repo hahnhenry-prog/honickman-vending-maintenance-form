@@ -1,38 +1,11 @@
 import { LocationData } from "../types";
+import { Field, Input } from "@honickman/ui";
 import { parsePhone, formatPhone, isValidPhone } from "../lib/phone";
 
 interface Props {
   data: LocationData;
   onChange: (data: LocationData) => void;
 }
-
-function Field({
-  label,
-  required,
-  children,
-  className = "",
-}: {
-  label: string;
-  required?: boolean;
-  children: React.ReactNode;
-  className?: string;
-}) {
-  return (
-    <div className={className}>
-      <label className="block text-sm font-medium text-gray-700 mb-1.5">
-        {label}
-        {required && <span className="text-[var(--color-primary)] ml-0.5">*</span>}
-      </label>
-      {children}
-    </div>
-  );
-}
-
-const inputCls =
-  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors placeholder:text-gray-400";
-
-const inputDisabledCls =
-  "w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-gray-50 text-gray-400 placeholder:text-gray-300 cursor-not-allowed";
 
 export default function BillingForm({ data, onChange }: Props) {
   const set =
@@ -69,22 +42,20 @@ export default function BillingForm({ data, onChange }: Props) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="AP Vendor Number" required={!skipped}>
-            <input
+            <Input
               type="text"
               value={data.apVendorNumber ?? ""}
               onChange={set("apVendorNumber")}
               placeholder="e.g. 12345"
-              className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
           </Field>
           <Field label="Billing Account Name" required={!skipped}>
-            <input
+            <Input
               type="text"
               value={data.billingAccountName ?? ""}
               onChange={set("billingAccountName")}
               placeholder="Legal billing entity name"
-              className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
           </Field>
@@ -124,39 +95,36 @@ export default function BillingForm({ data, onChange }: Props) {
         </div>
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
           <Field label="First Name" required={!skipped}>
-            <input
+            <Input
               type="text"
               value={data.billingContactFirstName ?? ""}
               onChange={set("billingContactFirstName")}
-              className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
           </Field>
           <Field label="Last Name" required={!skipped}>
-            <input
+            <Input
               type="text"
               value={data.billingContactLastName ?? ""}
               onChange={set("billingContactLastName")}
-              className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
           </Field>
           <Field label="Email" required={!skipped}>
-            <input
+            <Input
               type="email"
               value={data.billingContactEmail ?? ""}
               onChange={set("billingContactEmail")}
-              className={skipped ? inputDisabledCls : inputCls}
               disabled={skipped}
             />
           </Field>
           <Field label="Phone" required={!skipped}>
-            <input
+            <Input
               type="tel"
               value={formatPhone(data.billingContactPhone ?? "")}
               onChange={(e) => onChange({ ...data, billingContactPhone: parsePhone(e.target.value) })}
               placeholder="(555) 000-0000"
-              className={`${skipped ? inputDisabledCls : inputCls} ${!skipped && data.billingContactPhone && !isValidPhone(data.billingContactPhone) ? "border-red-300 focus:border-red-400 focus:ring-red-200" : ""}`}
+              invalid={!!(!skipped && data.billingContactPhone && !isValidPhone(data.billingContactPhone))}
               disabled={skipped}
             />
             {!skipped && data.billingContactPhone && !isValidPhone(data.billingContactPhone) && (
