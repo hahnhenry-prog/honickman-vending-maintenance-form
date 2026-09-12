@@ -91,3 +91,8 @@ push, and nothing moves.
 Note for Figma Make sessions: brand colours, fonts and logos can no longer be
 fixed from inside an app. They live in honickman-ui only.
 
+## Deployment
+
+Vercel project: https://honickman-vending-maintenance-form.vercel.app/
+Auto-deploys on push to `main` of hahnhenry-prog/honickman-vending-maintenance-form.
+
