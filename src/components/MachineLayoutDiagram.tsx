@@ -158,7 +158,7 @@ function DiagramModal({
         {/* Header */}
         <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
           <div>
-            <div className="font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <div className="font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
               Button Layout — {machineLabel}
             </div>
             <div className="text-xs text-gray-400 mt-0.5">

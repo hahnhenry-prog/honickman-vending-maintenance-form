@@ -60,9 +60,9 @@ function StepIndicator({ current }: { current: FormStep }) {
                 <div
                   className={`w-7 h-7 rounded-full flex items-center justify-center text-xs font-bold flex-shrink-0 transition-colors ${
                     done
-                      ? "bg-[#174a92] text-white"
+                      ? "bg-[var(--color-primary)] text-white"
                       : active
-                        ? "bg-[#0e2d6b] text-white"
+                        ? "bg-[var(--color-secondary)] text-white"
                         : "bg-gray-200 text-gray-400"
                   }`}
                 >
@@ -84,9 +84,9 @@ function StepIndicator({ current }: { current: FormStep }) {
                   <div
                     className={`text-sm font-semibold leading-tight ${
                       active
-                        ? "text-[#0e2d6b]"
+                        ? "text-[var(--color-secondary)]"
                         : done
-                          ? "text-[#174a92]"
+                          ? "text-[var(--color-primary)]"
                           : "text-gray-500"
                     }`}
                   >
@@ -97,7 +97,7 @@ function StepIndicator({ current }: { current: FormStep }) {
               </div>
               {i < STEPS.length - 1 && (
                 <div
-                  className={`h-px w-10 mx-4 transition-colors ${done ? "bg-[#174a92]" : "bg-gray-200"}`}
+                  className={`h-px w-10 mx-4 transition-colors ${done ? "bg-[var(--color-primary)]" : "bg-gray-200"}`}
                 />
               )}
             </div>
@@ -252,8 +252,8 @@ export default function App() {
           </svg>
         </div>
         <h2
-          className="text-2xl font-semibold text-[#0e2d6b] mb-2"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          className="text-2xl font-semibold text-[var(--color-secondary)] mb-2"
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Request Submitted
         </h2>
@@ -277,7 +277,7 @@ export default function App() {
             setLocation(defaultLocation);
             setMachines([]);
           }}
-          className="mt-8 px-6 py-2.5 bg-[#0e2d6b] text-white rounded-lg text-sm font-semibold hover:bg-[#2a2a3e] transition-colors"
+          className="mt-8 px-6 py-2.5 bg-[var(--color-secondary)] text-white rounded-lg text-sm font-semibold hover:bg-[#2a2a3e] transition-colors"
         >
           Submit Another Request
         </button>
@@ -298,7 +298,7 @@ export default function App() {
     <>
     <div className="min-h-full flex flex-col">
       {/* App header */}
-      <header className="text-white px-4 sm:px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "#174a92" }}>
+      <header className="text-white px-4 sm:px-8 py-3 flex items-center justify-between flex-shrink-0" style={{ backgroundColor: "var(--color-primary)" }}>
         <img
           src={logo}
           alt="Pepsi-Cola Bottling Company of New York, Inc."
@@ -308,7 +308,7 @@ export default function App() {
           <div className="text-right">
             <div
               className="text-sm font-semibold leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               New Vending Machine Request
             </div>
@@ -411,7 +411,7 @@ export default function App() {
                       ? !canContinueMachines
                       : false
               }
-              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
               {step === "machines"
                 ? <><span className="sm:hidden">Review →</span><span className="hidden sm:inline">Review Request →</span></>
@@ -423,7 +423,7 @@ export default function App() {
             <button
               onClick={submit}
               disabled={submitting}
-              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm"
+              className="px-6 py-2.5 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] disabled:opacity-60 disabled:cursor-not-allowed transition-colors shadow-sm"
             >
               {submitting ? "Submitting…" : "Submit Request"}
             </button>

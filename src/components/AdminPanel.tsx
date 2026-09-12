@@ -97,7 +97,7 @@ const clearAll = () => {
       {/* Header */}
       <div
         className="flex items-center justify-between px-8 py-4 flex-shrink-0 border-b border-white/20"
-        style={{ backgroundColor: "#0e2d6b" }}
+        style={{ backgroundColor: "var(--color-secondary)" }}
       >
         <div className="flex items-center gap-3">
           <div className="px-2 py-0.5 rounded text-[10px] font-bold tracking-widest uppercase bg-amber-400 text-amber-900">
@@ -106,7 +106,7 @@ const clearAll = () => {
           <div>
             <div
               className="text-white font-semibold text-sm leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Product Filter Configuration
             </div>
@@ -121,7 +121,7 @@ const clearAll = () => {
             className={`px-5 py-2 rounded-lg text-sm font-semibold transition-all ${
               saved
                 ? "bg-emerald-500 text-white"
-                : "bg-[#174a92] hover:bg-[#1f5cb8] text-white"
+                : "bg-[var(--color-primary)] hover:bg-[#1f5cb8] text-white"
             }`}
           >
             {saved ? "✓ Saved" : "Save Changes"}
@@ -146,13 +146,13 @@ const clearAll = () => {
               onClick={() => { setActiveTab(cat); setSearch(""); }}
               className={`px-5 py-3.5 text-sm font-medium border-b-2 transition-colors flex items-center gap-2 ${
                 activeTab === cat
-                  ? "border-[#174a92] text-[#0e2d6b]"
+                  ? "border-[var(--color-primary)] text-[var(--color-secondary)]"
                   : "border-transparent text-gray-400 hover:text-gray-600"
               }`}
             >
               {cat}
               {enabled && (
-                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[#174a92]/10 text-[#174a92] font-semibold">
+                <span className="text-[10px] px-1.5 py-0.5 rounded-full bg-[var(--color-primary)]/10 text-[var(--color-primary)] font-semibold">
                   {f!.length} products
                 </span>
               )}
@@ -166,7 +166,7 @@ const clearAll = () => {
         {/* Category description + filter toggle */}
         <div className="bg-white rounded-xl border border-gray-200 p-5 flex items-center justify-between gap-6">
           <div>
-            <div className="text-sm font-semibold text-[#0e2d6b]">{activeTab}</div>
+            <div className="text-sm font-semibold text-[var(--color-secondary)]">{activeTab}</div>
             <div className="text-xs text-gray-400 mt-0.5">{CATEGORY_DESCRIPTIONS[activeTab]}</div>
           </div>
           <div className="flex items-center gap-3 flex-shrink-0">
@@ -176,7 +176,7 @@ const clearAll = () => {
             <button
               onClick={() => toggleFilterEnabled(!filterEnabled)}
               className={`relative w-11 h-6 rounded-full transition-colors ${
-                filterEnabled ? "bg-[#174a92]" : "bg-gray-300"
+                filterEnabled ? "bg-[var(--color-primary)]" : "bg-gray-300"
               }`}
             >
               <span
@@ -202,7 +202,7 @@ const clearAll = () => {
                     setSearch(val);
                   }}
                   placeholder="Search products…"
-                  className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] bg-white"
+                  className="w-full border border-gray-300 rounded-lg px-3 py-2 pr-8 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] bg-white"
                 />
                 {search && (
                   <button
@@ -220,7 +220,7 @@ const clearAll = () => {
               </span>
 <button
                 onClick={selectAll}
-                className="px-3 py-2 text-sm text-[#174a92] hover:bg-[#174a92]/5 rounded-lg transition-colors font-medium"
+                className="px-3 py-2 text-sm text-[var(--color-primary)] hover:bg-[var(--color-primary)]/5 rounded-lg transition-colors font-medium"
               >
                 Select all
               </button>
@@ -266,7 +266,7 @@ const clearAll = () => {
                         type="checkbox"
                         checked={allowed}
                         onChange={() => toggleProduct(p.id)}
-                        className="w-4 h-4 accent-[#174a92] flex-shrink-0 cursor-pointer"
+                        className="w-4 h-4 accent-[var(--color-primary)] flex-shrink-0 cursor-pointer"
                       />
                       <div className="w-9 h-9 rounded-lg bg-gray-50 border border-gray-100 flex-shrink-0 overflow-hidden">
                         {p.image_web_url ? (
@@ -296,9 +296,9 @@ const clearAll = () => {
                         <div className="text-xs text-gray-500">#{p.id}</div>
                       </div>
                       {allowed && (
-                        <div className="w-4 h-4 rounded-full bg-[#174a92]/10 flex items-center justify-center flex-shrink-0">
+                        <div className="w-4 h-4 rounded-full bg-[var(--color-primary)]/10 flex items-center justify-center flex-shrink-0">
                           <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
-                            <path d="M1.5 4l2 2 3-3" stroke="#174a92" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
+                            <path d="M1.5 4l2 2 3-3" stroke="var(--color-primary)" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                           </svg>
                         </div>
                       )}

@@ -21,7 +21,7 @@ function Field({
     <div className={className}>
       <label className="block text-sm font-medium text-gray-700 mb-1.5">
         {label}
-        {required && <span className="text-[#174a92] ml-0.5">*</span>}
+        {required && <span className="text-[var(--color-primary)] ml-0.5">*</span>}
       </label>
       {children}
     </div>
@@ -29,7 +29,7 @@ function Field({
 }
 
 const inputCls =
-  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors placeholder:text-gray-400";
+  "w-full border border-gray-300 rounded-md px-3 py-2 text-sm bg-white focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors placeholder:text-gray-400";
 
 const inputDisabledCls =
   "w-full border border-gray-200 rounded-md px-3 py-2 text-sm bg-gray-50 text-gray-400 placeholder:text-gray-300 cursor-not-allowed";
@@ -46,19 +46,19 @@ export default function BillingForm({ data, onChange }: Props) {
     <div className="space-y-6">
       <div>
         <h2
-          className="text-2xl font-semibold text-[#0e2d6b]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          className="text-2xl font-semibold text-[var(--color-secondary)]"
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Billing Details
         </h2>
         <p className="text-sm text-gray-500 mt-1 leading-relaxed">
           All vending customers must be set up as a vendor with Accounts Payable in order to receive commission.
           To submit a new vendor request, email{" "}
-          <a href="mailto:APHelp@hongrp.com" className="text-[#174a92] hover:underline font-medium">APHelp@hongrp.com</a>
+          <a href="mailto:APHelp@hongrp.com" className="text-[var(--color-primary)] hover:underline font-medium">APHelp@hongrp.com</a>
           {" "}with a completed{" "}
-          <a href="https://honickman-catalog-images.s3.us-east-1.amazonaws.com/documents/Form W-9.pdf" target="_blank" rel="noreferrer" className="text-[#174a92] hover:underline font-medium">W-9</a>
+          <a href="https://honickman-catalog-images.s3.us-east-1.amazonaws.com/documents/Form W-9.pdf" target="_blank" rel="noreferrer" className="text-[var(--color-primary)] hover:underline font-medium">W-9</a>
           {" "}and{" "}
-          <a href="https://honickman-catalog-images.s3.us-east-1.amazonaws.com/documents/Honickman ACH Request Form.pdf" target="_blank" rel="noreferrer" className="text-[#174a92] hover:underline font-medium">ACH form</a>.
+          <a href="https://honickman-catalog-images.s3.us-east-1.amazonaws.com/documents/Honickman ACH Request Form.pdf" target="_blank" rel="noreferrer" className="text-[var(--color-primary)] hover:underline font-medium">ACH form</a>.
           {" "}Commissions are paid via ACH only — no checks.
         </p>
       </div>
@@ -97,7 +97,7 @@ export default function BillingForm({ data, onChange }: Props) {
           Commission
         </div>
         <Field label="Commission Rate" required>
-          <div className="flex items-center border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors w-44">
+          <div className="flex items-center border border-gray-300 rounded-md focus-within:ring-2 focus-within:ring-[var(--color-primary)]/25 focus-within:border-[var(--color-primary)] transition-colors w-44">
             <input
               type="number"
               min="0"

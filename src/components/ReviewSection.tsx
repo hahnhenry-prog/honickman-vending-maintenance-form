@@ -16,8 +16,8 @@ export default function ReviewSection({ location, machines }: Props) {
     <div className="space-y-6">
       <div>
         <h2
-          className="text-2xl font-semibold text-[#0e2d6b]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          className="text-2xl font-semibold text-[var(--color-secondary)]"
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Review & Submit
         </h2>
@@ -42,8 +42,8 @@ export default function ReviewSection({ location, machines }: Props) {
               {label}
             </div>
             <div
-              className={`font-semibold text-[#0e2d6b] ${text ? "text-base" : "text-2xl"}`}
-              style={!text ? { fontFamily: "'Outfit', sans-serif" } : {}}
+              className={`font-semibold text-[var(--color-secondary)] ${text ? "text-base" : "text-2xl"}`}
+              style={!text ? { fontFamily: "var(--font-display)" } : {}}
             >
               {value}
             </div>
@@ -58,9 +58,9 @@ export default function ReviewSection({ location, machines }: Props) {
         </div>
         <dl className="grid grid-cols-[120px_1fr] sm:grid-cols-[140px_1fr] gap-y-3 text-sm [overflow-wrap:anywhere]">
           <dt className="text-gray-500">Business</dt>
-          <dd className="font-medium text-[#0e2d6b]">{location.businessName}</dd>
+          <dd className="font-medium text-[var(--color-secondary)]">{location.businessName}</dd>
           <dt className="text-gray-500">Address</dt>
-          <dd className="text-[#0e2d6b]">
+          <dd className="text-[var(--color-secondary)]">
             {location.address}, {location.city}
             {location.state && `, ${location.state}`}
             {location.zip && ` ${location.zip}`}
@@ -68,7 +68,7 @@ export default function ReviewSection({ location, machines }: Props) {
           {location.contactName && (
             <>
               <dt className="text-gray-500">On-Site Contact</dt>
-              <dd className="text-[#0e2d6b]">
+              <dd className="text-[var(--color-secondary)]">
                 {location.contactName}
                 {location.contactPhone && ` · ${location.contactPhone}`}
               </dd>
@@ -77,31 +77,31 @@ export default function ReviewSection({ location, machines }: Props) {
           {location.contactEmail && (
             <>
               <dt className="text-gray-500">Email</dt>
-              <dd className="text-[#0e2d6b]">{location.contactEmail}</dd>
+              <dd className="text-[var(--color-secondary)]">{location.contactEmail}</dd>
             </>
           )}
           {location.approvedBy && (
             <>
               <dt className="text-gray-500">Approved By</dt>
-              <dd className="font-medium text-[#0e2d6b]">{location.approvedBy}</dd>
+              <dd className="font-medium text-[var(--color-secondary)]">{location.approvedBy}</dd>
             </>
           )}
           {location.branch && (
             <>
               <dt className="text-gray-500">Branch</dt>
-              <dd className="font-medium text-[#0e2d6b]">{location.branch}</dd>
+              <dd className="font-medium text-[var(--color-secondary)]">{location.branch}</dd>
             </>
           )}
           {location.distributor && (
             <>
               <dt className="text-gray-500">Distributor</dt>
-              <dd className="text-[#0e2d6b]">{location.distributor}</dd>
+              <dd className="text-[var(--color-secondary)]">{location.distributor}</dd>
             </>
           )}
           {location.notes && (
             <>
               <dt className="text-gray-500">Notes</dt>
-              <dd className="text-[#0e2d6b]">{location.notes}</dd>
+              <dd className="text-[var(--color-secondary)]">{location.notes}</dd>
             </>
           )}
         </dl>
@@ -124,25 +124,25 @@ export default function ReviewSection({ location, machines }: Props) {
             {location.apVendorNumber && (
               <>
                 <dt className="text-gray-500">AP Vendor Number</dt>
-                <dd className="font-medium text-[#0e2d6b]">{location.apVendorNumber}</dd>
+                <dd className="font-medium text-[var(--color-secondary)]">{location.apVendorNumber}</dd>
               </>
             )}
             {location.billingAccountName && (
               <>
                 <dt className="text-gray-500">Billing Account</dt>
-                <dd className="font-medium text-[#0e2d6b]">{location.billingAccountName}</dd>
+                <dd className="font-medium text-[var(--color-secondary)]">{location.billingAccountName}</dd>
               </>
             )}
             {location.commissionRate && (
               <>
                 <dt className="text-gray-500">Commission Rate</dt>
-                <dd className="font-medium text-[#0e2d6b]">{location.commissionRate}%</dd>
+                <dd className="font-medium text-[var(--color-secondary)]">{location.commissionRate}%</dd>
               </>
             )}
             {(location.billingContactFirstName || location.billingContactLastName) && (
               <>
                 <dt className="text-gray-500">Billing Contact</dt>
-                <dd className="font-medium text-[#0e2d6b]">
+                <dd className="font-medium text-[var(--color-secondary)]">
                   {[location.billingContactFirstName, location.billingContactLastName].filter(Boolean).join(" ")}
                 </dd>
               </>
@@ -150,13 +150,13 @@ export default function ReviewSection({ location, machines }: Props) {
             {location.billingContactEmail && (
               <>
                 <dt className="text-gray-500">Billing Email</dt>
-                <dd className="text-[#0e2d6b]">{location.billingContactEmail}</dd>
+                <dd className="text-[var(--color-secondary)]">{location.billingContactEmail}</dd>
               </>
             )}
             {location.billingContactPhone && (
               <>
                 <dt className="text-gray-500">Billing Phone</dt>
-                <dd className="text-[#0e2d6b]">{location.billingContactPhone}</dd>
+                <dd className="text-[var(--color-secondary)]">{location.billingContactPhone}</dd>
               </>
             )}
           </dl>
@@ -178,10 +178,10 @@ export default function ReviewSection({ location, machines }: Props) {
                 const name = `FS ${location.businessShortName ?? ""} ${m.shortName ?? ""}`.trim().toUpperCase();
                 return (
                   <div key={m.id} className="flex items-center gap-2">
-                    <span className="w-5 h-5 rounded-full bg-[#0e2d6b] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
+                    <span className="w-5 h-5 rounded-full bg-[var(--color-secondary)] text-white flex items-center justify-center text-[10px] font-bold flex-shrink-0">
                       {i + 1}
                     </span>
-                    <span className="font-mono text-sm text-[#0e2d6b]">{name}</span>
+                    <span className="font-mono text-sm text-[var(--color-secondary)]">{name}</span>
                   </div>
                 );
               })}
@@ -217,11 +217,11 @@ export default function ReviewSection({ location, machines }: Props) {
                 key={machine.id}
                 className="flex gap-4 pb-4 border-b border-gray-100 last:border-0 last:pb-0"
               >
-                <div className="w-7 h-7 rounded-full bg-[#0e2d6b] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
+                <div className="w-7 h-7 rounded-full bg-[var(--color-secondary)] text-white flex items-center justify-center text-xs font-bold flex-shrink-0 mt-0.5">
                   {i + 1}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-[#0e2d6b] text-sm">
+                  <div className="font-medium text-[var(--color-secondary)] text-sm">
                     {machine.locationName}
                   </div>
                   <div className="text-xs text-gray-500 mt-0.5 flex items-center gap-2">
@@ -259,7 +259,7 @@ export default function ReviewSection({ location, machines }: Props) {
         </div>
       </section>
 
-      <div className="bg-[#174a92]/5 border border-[#174a92]/20 rounded-xl px-5 py-4 text-sm text-[#0e2d6b]">
+      <div className="bg-[var(--color-primary)]/5 border border-[var(--color-primary)]/20 rounded-xl px-5 py-4 text-sm text-[var(--color-secondary)]">
         Each machine will generate a separate account in VIP. MDM will follow up to confirm account activation and equipment assignment. Once this has taken place, Sales may submit an EMO to request machine placements.
       </div>
     </div>

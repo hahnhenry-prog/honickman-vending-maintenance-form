@@ -181,8 +181,8 @@ function ProductPickerModal({
         <div className="flex items-center justify-between px-5 py-4 border-b border-gray-100 flex-shrink-0">
           <div>
             <div
-              className="font-semibold text-[#0e2d6b]"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              className="font-semibold text-[var(--color-secondary)]"
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Assign Product
             </div>
@@ -204,7 +204,7 @@ function ProductPickerModal({
             onChange={handleSearchChange}
             placeholder="Search by description or item #..."
             autoFocus={!("ontouchstart" in window)}
-            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92]"
+            className="w-full border border-gray-200 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)]"
           />
         </div>
 
@@ -233,7 +233,7 @@ function ProductPickerModal({
                     onClick={() => pick(p)}
                     className={`w-full flex items-center gap-3 px-3 py-2 rounded-lg text-left transition-colors ${
                       isSelected
-                        ? "bg-blue-50 ring-1 ring-[#174a92]/30"
+                        ? "bg-blue-50 ring-1 ring-[var(--color-primary)]/30"
                         : "hover:bg-gray-50"
                     }`}
                   >
@@ -263,7 +263,7 @@ function ProductPickerModal({
                       <div className="text-[10px] text-gray-500 mt-0.5">#{p.id}</div>
                     </div>
                     {isSelected && (
-                      <div className="w-4 h-4 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0">
+                      <div className="w-4 h-4 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
                         <svg width="8" height="8" viewBox="0 0 8 8" fill="none">
                           <path
                             d="M1.5 4l2 2 3-3"
@@ -320,7 +320,7 @@ function ProductPickerModal({
             {current ? (
               <button
                 onClick={() => onSave(null)}
-                className="text-sm text-gray-500 hover:text-[#174a92] transition-colors"
+                className="text-sm text-gray-500 hover:text-[var(--color-primary)] transition-colors"
               >
                 Clear slot
               </button>
@@ -337,7 +337,7 @@ function ProductPickerModal({
               <button
                 onClick={handleApply}
                 disabled={!selected}
-                className="px-5 py-2 bg-[#174a92] text-white text-sm font-semibold rounded-lg hover:bg-[#0e3585] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
+                className="px-5 py-2 bg-[var(--color-primary)] text-white text-sm font-semibold rounded-lg hover:bg-[var(--color-primary-dark)] disabled:opacity-40 disabled:cursor-not-allowed transition-colors"
               >
                 Apply
               </button>
@@ -369,7 +369,7 @@ function StackColumn({
       className="flex-shrink-0 w-[80px] rounded-lg border-2 overflow-hidden transition-all hover:shadow-md hover:-translate-y-0.5 active:translate-y-0"
       style={{
         height: 164,
-        borderColor: hasProduct ? "#174a9260" : "#e2e0dc",
+        borderColor: hasProduct ? "color-mix(in srgb, var(--color-primary) 38%, transparent)" : "#e2e0dc",
         borderStyle: hasProduct ? "solid" : "dashed",
       }}
     >
@@ -377,7 +377,7 @@ function StackColumn({
       <div
         className="w-full text-center text-[11px] font-bold py-1.5 leading-none"
         style={{
-          backgroundColor: hasProduct ? "#174a92" : "#e8e5e0",
+          backgroundColor: hasProduct ? "var(--color-primary)" : "#e8e5e0",
           color: hasProduct ? "white" : "#999",
         }}
       >
@@ -388,14 +388,14 @@ function StackColumn({
         className="flex-1 flex flex-col items-center justify-center p-2 text-center"
         style={{
           height: "calc(100% - 28px)",
-          backgroundColor: hasProduct ? "#174a920d" : "white",
+          backgroundColor: hasProduct ? "color-mix(in srgb, var(--color-primary) 5%, transparent)" : "white",
         }}
       >
         {hasProduct ? (
           <>
             {/* Size above image */}
             {assignment!.productDescription?.split(" · ")[2] ? (
-              <div className="text-[9px] font-semibold text-[#174a92] mb-0.5 leading-none">
+              <div className="text-[9px] font-semibold text-[var(--color-primary)] mb-0.5 leading-none">
                 {assignment!.productDescription.split(" · ")[2]}
               </div>
             ) : null}
@@ -419,7 +419,7 @@ function StackColumn({
               {assignment!.productDescription?.split(" · ")[1] ?? ""}
             </div>
             {assignment?.price && (
-              <div className="text-[11px] font-semibold mt-0.5 text-[#174a92]">
+              <div className="text-[11px] font-semibold mt-0.5 text-[var(--color-primary)]">
                 ${assignment.price}
               </div>
             )}
@@ -455,7 +455,7 @@ function GridCell({
       className="w-[84px] h-[80px] rounded-md border-2 flex flex-col items-center justify-center transition-all hover:shadow-sm hover:-translate-y-px active:translate-y-0 flex-shrink-0 overflow-hidden"
       style={
         hasProduct
-          ? { backgroundColor: "#174a920d", borderColor: "#174a9240" }
+          ? { backgroundColor: "color-mix(in srgb, var(--color-primary) 5%, transparent)", borderColor: "color-mix(in srgb, var(--color-primary) 25%, transparent)" }
           : { backgroundColor: "white", borderColor: "#e2e0dc", borderStyle: "dashed" }
       }
     >
@@ -468,7 +468,7 @@ function GridCell({
               className="h-10 w-auto object-contain"
             />
             {assignment?.price && (
-              <div className="text-[11px] font-semibold text-[#174a92] mt-1">
+              <div className="text-[11px] font-semibold text-[var(--color-primary)] mt-1">
                 ${assignment.price}
               </div>
             )}
@@ -484,12 +484,12 @@ function GridCell({
               </div>
             )}
             {size && (
-              <div className="text-[9px] text-[#174a92] font-medium leading-tight mt-0.5">
+              <div className="text-[9px] text-[var(--color-primary)] font-medium leading-tight mt-0.5">
                 {size}
               </div>
             )}
             {assignment?.price && (
-              <div className="text-[11px] font-semibold text-[#174a92] mt-1">
+              <div className="text-[11px] font-semibold text-[var(--color-primary)] mt-1">
                 ${assignment.price}
               </div>
             )}
@@ -636,7 +636,7 @@ function PlanogramEditor({
                 role="switch"
                 aria-checked={showImages}
                 onClick={() => setShowImages((v) => !v)}
-                className={`relative w-9 h-5 rounded-full transition-colors ${showImages ? "bg-[#174a92]" : "bg-gray-300"}`}
+                className={`relative w-9 h-5 rounded-full transition-colors ${showImages ? "bg-[var(--color-primary)]" : "bg-gray-300"}`}
               >
                 <span className={`absolute top-0.5 left-0.5 w-4 h-4 rounded-full bg-white shadow transition-transform ${showImages ? "translate-x-4" : ""}`} />
               </button>
@@ -703,13 +703,13 @@ function PlanogramEditor({
                             />
                             {gi < group.length - 1 && (
                               <div className="flex flex-col items-center justify-center w-5 self-stretch">
-                                <div className="w-px flex-1 bg-[#174a92]/30" />
-                                <div className="w-4 h-4 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0 my-1">
+                                <div className="w-px flex-1 bg-[var(--color-primary)]/30" />
+                                <div className="w-4 h-4 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0 my-1">
                                   <svg width="8" height="8" viewBox="0 0 10 10" fill="none">
                                     <path d="M2 5h2m4 0h-2m-2 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" stroke="white" strokeWidth="1.2" strokeLinecap="round"/>
                                   </svg>
                                 </div>
-                                <div className="w-px flex-1 bg-[#174a92]/30" />
+                                <div className="w-px flex-1 bg-[var(--color-primary)]/30" />
                               </div>
                             )}
                           </div>
@@ -717,11 +717,11 @@ function PlanogramEditor({
                       })}
                     </div>
                     {/* Bracket label */}
-                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[#174a92]/10 border border-[#174a92]/20">
+                    <div className="flex items-center gap-1 px-2 py-0.5 rounded-full bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
                       <svg width="9" height="9" viewBox="0 0 10 10" fill="none">
-                        <path d="M2 5h2m4 0h-2m-2 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" stroke="#174a92" strokeWidth="1.3" strokeLinecap="round"/>
+                        <path d="M2 5h2m4 0h-2m-2 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Zm4 0a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z" stroke="var(--color-primary)" strokeWidth="1.3" strokeLinecap="round"/>
                       </svg>
-                      <span className="text-[10px] font-semibold text-[#174a92]">
+                      <span className="text-[10px] font-semibold text-[var(--color-primary)]">
                         Cols {group.map((idx) => idx + 1).join(" & ")} linked
                       </span>
                     </div>
@@ -820,7 +820,7 @@ function AssetTagSVG({ scale = 1, suffix = "" }: { scale?: number; suffix?: stri
       {/* Number line */}
       <text x="110" y="56" textAnchor="middle" fontFamily="'Courier New', monospace" fontWeight="700" fontSize="11" fill="#1a1a1a" letterSpacing="1">
         <tspan fill="#555">0700</tspan>
-        <tspan fill={suffix ? "#174a92" : "#aaa"}>{suffix ? suffix.padEnd(6, "X") : "XXXXXX"}</tspan>
+        <tspan fill={suffix ? "var(--color-primary)" : "#aaa"}>{suffix ? suffix.padEnd(6, "X") : "XXXXXX"}</tspan>
       </text>
       {/* Arrow annotation — only shown in modal */}
     </svg>
@@ -859,7 +859,7 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div>
-                <div className="font-semibold text-[#0e2d6b]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <div className="font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
                   Where to find the Asset Number
                 </div>
                 <div className="text-xs text-gray-500 mt-0.5">
@@ -881,18 +881,18 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
                   <AssetTagSVG scale={1.35} suffix={suffix || "173240"} />
                   {/* Callout arrow pointing at the suffix */}
                   <div className="absolute -bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center">
-                    <div className="w-px h-6 bg-[#174a92]" />
-                    <div className="w-1.5 h-1.5 rounded-full bg-[#174a92] -mt-0.5" />
+                    <div className="w-px h-6 bg-[var(--color-primary)]" />
+                    <div className="w-1.5 h-1.5 rounded-full bg-[var(--color-primary)] -mt-0.5" />
                   </div>
                 </div>
               </div>
 
               {/* Callout label */}
               <div className="text-center pt-4">
-                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[#174a92]/10 border border-[#174a92]/20">
-                  <span className="font-mono font-bold text-sm text-[#174a92]">0700</span>
+                <span className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-[var(--color-primary)]/10 border border-[var(--color-primary)]/20">
+                  <span className="font-mono font-bold text-sm text-[var(--color-primary)]">0700</span>
                   <span className="text-xs text-gray-500">then the</span>
-                  <span className="font-mono font-bold text-sm text-[#174a92]">6-digit number</span>
+                  <span className="font-mono font-bold text-sm text-[var(--color-primary)]">6-digit number</span>
                   <span className="text-xs text-gray-500">after it</span>
                 </span>
               </div>
@@ -939,7 +939,7 @@ function MachineTypeSelector({
         onClick={() => setOpen(true)}
         className={`flex items-center gap-3 px-4 py-3 rounded-xl border-2 text-left transition-all w-full max-w-sm ${
           selectedType
-            ? "border-[#174a92] bg-[#174a92] hover:bg-[#0e3585] hover:border-[#0e3585]"
+            ? "border-[var(--color-primary)] bg-[var(--color-primary)] hover:bg-[var(--color-primary-dark)] hover:border-[var(--color-primary-dark)]"
             : "border-gray-300 bg-white hover:border-gray-400"
         }`}
       >
@@ -1007,11 +1007,11 @@ function MachineTypeSelector({
                     onClick={() => handleSelect(type.id)}
                     className={`relative flex flex-col items-start gap-0.5 px-4 py-3 rounded-xl border-2 text-left transition-all ${
                       isSelected
-                        ? "bg-[#174a92] border-[#174a92]"
+                        ? "bg-[var(--color-primary)] border-[var(--color-primary)]"
                         : "bg-white border-gray-200 hover:border-gray-300 hover:shadow-sm"
                     }`}
                   >
-                    <span className={`font-semibold text-sm leading-tight ${isSelected ? "text-white" : "text-[#0e2d6b]"}`}>
+                    <span className={`font-semibold text-sm leading-tight ${isSelected ? "text-white" : "text-[var(--color-secondary)]"}`}>
                       {type.label}
                     </span>
                     <span className={`text-xs ${isSelected ? "text-white/60" : "text-gray-500"}`}>
@@ -1207,8 +1207,8 @@ export default function MachinesSection({ machines, onChange, customerShortName 
       <div className="flex items-start justify-between">
         <div>
           <h2
-            className="text-2xl font-semibold text-[#0e2d6b]"
-            style={{ fontFamily: "'Outfit', sans-serif" }}
+            className="text-2xl font-semibold text-[var(--color-secondary)]"
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Configure Machines
           </h2>
@@ -1290,18 +1290,18 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   setExpandedId(isExpanded ? null : machine.id)
                 }
               >
-                <div className="w-7 h-7 rounded-full bg-[#0e2d6b] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
+                <div className="w-7 h-7 rounded-full bg-[var(--color-secondary)] text-white flex items-center justify-center text-xs font-bold flex-shrink-0">
                   {idx + 1}
                 </div>
                 <div className="flex-1 min-w-0">
-                  <div className="font-medium text-sm text-[#0e2d6b] flex items-center gap-2">
+                  <div className="font-medium text-sm text-[var(--color-secondary)] flex items-center gap-2">
                     {machine.locationName || (
                       <span className="text-gray-500 font-normal italic">
                         Unnamed machine
                       </span>
                     )}
                     {isDuplicate && (
-                      <span className="text-[#174a92] text-xs font-normal">
+                      <span className="text-[var(--color-primary)] text-xs font-normal">
                         ⚠ Duplicate name
                       </span>
                     )}
@@ -1345,7 +1345,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   {/* Copy machine */}
                   <button
                     onClick={(e) => { e.stopPropagation(); duplicate(machine.id); }}
-                    className="text-gray-400 hover:text-[#174a92] transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100"
+                    className="text-gray-400 hover:text-[var(--color-primary)] transition-colors w-7 h-7 flex items-center justify-center rounded-md hover:bg-gray-100"
                     title="Duplicate machine"
                   >
                     <svg width="14" height="14" viewBox="0 0 14 14" fill="none" stroke="currentColor" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
@@ -1409,7 +1409,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   <div className="max-w-sm">
                     <label className="block text-sm font-medium text-gray-700 mb-1.5">
                       Machine Location Name
-                      <span className="text-[#174a92] ml-0.5">*</span>
+                      <span className="text-[var(--color-primary)] ml-0.5">*</span>
                     </label>
                     <input
                       type="text"
@@ -1419,7 +1419,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                         update(machine.id, { locationName: e.target.value })
                       }
                       placeholder="e.g. Main Entrance 1"
-                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
+                      className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors"
                     />
                     <p className="text-xs text-gray-500 mt-1">
                       For machines in the same location, add a number, counting
@@ -1441,7 +1441,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                         <div className="max-w-sm">
                           <label className="block text-sm font-medium text-gray-700 mb-1.5">
                             Machine Location Short Name
-                            <span className="text-[#174a92] ml-0.5">*</span>
+                            <span className="text-[var(--color-primary)] ml-0.5">*</span>
                           </label>
                           <input
                             type="text"
@@ -1453,7 +1453,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                             }
                             maxLength={maxShortName}
                             placeholder="e.g. Entrance 1"
-                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[#174a92]/25 focus:border-[#174a92] transition-colors"
+                            className="w-full border border-gray-300 rounded-lg px-3 py-2 text-sm focus:outline-none focus:ring-2 focus:ring-[var(--color-primary)]/25 focus:border-[var(--color-primary)] transition-colors"
                           />
                           <p className="text-xs text-gray-500 mt-1">
                             Must be unique within this location. Max {maxShortName} characters based on Customer Short Name.
@@ -1486,7 +1486,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   <div>
                     <label className="block text-sm font-medium text-gray-700 mb-3">
                       Machine Type
-                      <span className="text-[#174a92] ml-0.5">*</span>
+                      <span className="text-[var(--color-primary)] ml-0.5">*</span>
                     </label>
                     <MachineTypeSelector
                       selected={machine.machineTypeId}
@@ -1501,7 +1501,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-3">
                         Machine Status
-                        <span className="text-[#174a92] ml-0.5">*</span>
+                        <span className="text-[var(--color-primary)] ml-0.5">*</span>
                       </label>
                       <div className="flex flex-col sm:flex-row gap-3">
                         {(
@@ -1544,26 +1544,26 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                               }
                               className={`flex-1 flex items-center gap-3 px-4 py-3.5 rounded-xl border-2 text-left transition-all ${
                                 isSelected
-                                  ? "border-[#174a92] bg-[#174a92]/5"
+                                  ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5"
                                   : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
                               }`}
                             >
                               <span
                                 className={`flex-shrink-0 ${
-                                  isSelected ? "text-[#174a92]" : "text-gray-500"
+                                  isSelected ? "text-[var(--color-primary)]" : "text-gray-500"
                                 }`}
                               >
                                 {icon}
                               </span>
                               <span
                                 className={`text-sm font-medium leading-snug ${
-                                  isSelected ? "text-[#0e2d6b]" : "text-gray-600"
+                                  isSelected ? "text-[var(--color-secondary)]" : "text-gray-600"
                                 }`}
                               >
                                 {label}
                               </span>
                               {isSelected && (
-                                <div className="ml-auto w-5 h-5 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0">
+                                <div className="ml-auto w-5 h-5 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0">
                                   <svg width="9" height="9" viewBox="0 0 8 8" fill="none">
                                     <path d="M1.5 4l2 2 3-3" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                                   </svg>
@@ -1581,9 +1581,9 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                           <div className="flex-1 min-w-[200px] max-w-xs">
                             <label className="block text-sm font-medium text-gray-700 mb-1.5">
                               Machine Asset Number
-                              <span className="text-[#174a92] ml-0.5">*</span>
+                              <span className="text-[var(--color-primary)] ml-0.5">*</span>
                             </label>
-                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors">
+                            <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[var(--color-primary)]/25 focus-within:border-[var(--color-primary)] transition-colors">
                               <span className="px-3 py-2 text-sm font-mono font-semibold text-gray-500 bg-gray-50 border-r border-gray-300 select-none tracking-wider flex-shrink-0">
                                 0700
                               </span>
@@ -1628,7 +1628,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                     <div>
                       <label className="block text-sm font-medium text-gray-700 mb-3">
                         Machine Pricing
-                        <span className="text-[#174a92] ml-0.5">*</span>
+                        <span className="text-[var(--color-primary)] ml-0.5">*</span>
                       </label>
                       <div className="flex flex-col sm:flex-row gap-3">
                         {(
@@ -1658,18 +1658,18 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                               }
                               className={`flex-1 flex items-start gap-3 px-4 py-3.5 rounded-xl border-2 text-left transition-all ${
                                 isSelected
-                                  ? "border-[#174a92] bg-[#174a92]/5"
+                                  ? "border-[var(--color-primary)] bg-[var(--color-primary)]/5"
                                   : "border-gray-200 bg-white hover:border-gray-300 hover:shadow-sm"
                               }`}
                             >
                               <div className="flex-1">
-                                <div className={`text-sm font-medium leading-snug ${isSelected ? "text-[#0e2d6b]" : "text-gray-600"}`}>
+                                <div className={`text-sm font-medium leading-snug ${isSelected ? "text-[var(--color-secondary)]" : "text-gray-600"}`}>
                                   {label}
                                 </div>
                                 <div className="text-xs text-gray-500 mt-0.5">{sub}</div>
                               </div>
                               {isSelected && (
-                                <div className="w-5 h-5 rounded-full bg-[#174a92] flex items-center justify-center flex-shrink-0 mt-0.5">
+                                <div className="w-5 h-5 rounded-full bg-[var(--color-primary)] flex items-center justify-center flex-shrink-0 mt-0.5">
                                   <svg width="9" height="9" viewBox="0 0 8 8" fill="none">
                                     <path d="M1.5 4l2 2 3-3" stroke="white" strokeWidth="1.3" strokeLinecap="round" strokeLinejoin="round" />
                                   </svg>
@@ -1685,9 +1685,9 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                         <div className="mt-4 max-w-xs">
                           <label className="block text-sm font-medium text-gray-700 mb-1.5">
                             Vend Price
-                            <span className="text-[#174a92] ml-0.5">*</span>
+                            <span className="text-[var(--color-primary)] ml-0.5">*</span>
                           </label>
-                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[#174a92]/25 focus-within:border-[#174a92] transition-colors w-36">
+                          <div className="flex items-center border border-gray-300 rounded-lg overflow-hidden focus-within:ring-2 focus-within:ring-[var(--color-primary)]/25 focus-within:border-[var(--color-primary)] transition-colors w-36">
                             <span className="px-3 py-2 text-sm text-gray-500 bg-gray-50 border-r border-gray-300 select-none">$</span>
                             <input
                               type="number"
@@ -1736,7 +1736,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
                   <div className="flex justify-end pt-4 mt-2 border-t border-gray-100">
                     <button
                       onClick={() => setExpandedId(null)}
-                      className="px-4 py-2 rounded-lg text-sm font-semibold bg-[#174a92] text-white hover:bg-[#0e3585] transition-colors"
+                      className="px-4 py-2 rounded-lg text-sm font-semibold bg-[var(--color-primary)] text-white hover:bg-[var(--color-primary-dark)] transition-colors"
                     >
                       Save
                     </button>
@@ -1750,7 +1750,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
 
       <button
         onClick={addMachine}
-        className="flex items-center gap-2 px-4 py-2.5 bg-[#174a92] text-white rounded-lg text-sm font-semibold hover:bg-[#0e3585] transition-colors shadow-sm"
+        className="flex items-center gap-2 px-4 py-2.5 bg-[var(--color-primary)] text-white rounded-lg text-sm font-semibold hover:bg-[var(--color-primary-dark)] transition-colors shadow-sm"
       >
         <span className="text-base leading-none">+</span> Add Machine
       </button>
