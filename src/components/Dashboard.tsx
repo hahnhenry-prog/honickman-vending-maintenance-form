@@ -95,7 +95,7 @@ function SalesRepSelector({ onSelect }: { onSelect: (name: string) => void }) {
       <div className="max-w-lg mx-auto px-6 py-10">
         <div className="text-center mb-8">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">Sales</div>
-          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
             Select Your Name
           </h2>
           <p className="text-sm text-gray-500 mt-1">Select your name to see your submitted requests.</p>
@@ -445,7 +445,7 @@ function RequestDetail({
 
         {/* Print-only header */}
         <div className="hidden print:block mb-4">
-          <div className="text-lg font-bold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <div className="text-lg font-bold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
             PCNY — Vending Machine Request
           </div>
           <div className="text-sm text-gray-500">{request.business_name} · {request.address}, {request.city}, {request.state} {request.zip}</div>
@@ -656,7 +656,7 @@ function PasswordGate({ role, onSuccess, onBack }: { role: DashboardRole; onSucc
       <div className="w-full max-w-sm">
         <div className="text-center mb-6">
           <div className="text-xs font-semibold uppercase tracking-widest text-gray-500 mb-2">{role}</div>
-          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+          <h2 className="text-xl font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
             Enter Password
           </h2>
           <p className="text-sm text-gray-500 mt-1">This view is restricted to operations staff.</p>
@@ -717,10 +717,10 @@ export default function Dashboard({ onClose }: { onClose: () => void }) {
             </svg>
           </button>
           <div>
-            <div className="text-[10px] uppercase tracking-widest text-white/50 leading-none mb-0.5" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <div className="text-[10px] uppercase tracking-widest text-white/50 leading-none mb-0.5" style={{ fontFamily: "var(--font-display)" }}>
               Submissions
             </div>
-            <div className="text-sm font-semibold" style={{ fontFamily: "'Outfit', sans-serif" }}>
+            <div className="text-sm font-semibold" style={{ fontFamily: "var(--font-display)" }}>
               Dashboard
             </div>
           </div>

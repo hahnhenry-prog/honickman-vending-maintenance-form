@@ -47,7 +47,7 @@ export default function BillingForm({ data, onChange }: Props) {
       <div>
         <h2
           className="text-2xl font-semibold text-[var(--color-secondary)]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Billing Details
         </h2>

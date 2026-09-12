@@ -253,7 +253,7 @@ export default function App() {
         </div>
         <h2
           className="text-2xl font-semibold text-[var(--color-secondary)] mb-2"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Request Submitted
         </h2>
@@ -308,7 +308,7 @@ export default function App() {
           <div className="text-right">
             <div
               className="text-sm font-semibold leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               New Vending Machine Request
             </div>

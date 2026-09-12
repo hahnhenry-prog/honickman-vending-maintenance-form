@@ -17,7 +17,7 @@ export default function ReviewSection({ location, machines }: Props) {
       <div>
         <h2
           className="text-2xl font-semibold text-[var(--color-secondary)]"
-          style={{ fontFamily: "'Outfit', sans-serif" }}
+          style={{ fontFamily: "var(--font-display)" }}
         >
           Review & Submit
         </h2>
@@ -43,7 +43,7 @@ export default function ReviewSection({ location, machines }: Props) {
             </div>
             <div
               className={`font-semibold text-[var(--color-secondary)] ${text ? "text-base" : "text-2xl"}`}
-              style={!text ? { fontFamily: "'Outfit', sans-serif" } : {}}
+              style={!text ? { fontFamily: "var(--font-display)" } : {}}
             >
               {value}
             </div>

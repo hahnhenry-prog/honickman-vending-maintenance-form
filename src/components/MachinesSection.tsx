@@ -182,7 +182,7 @@ function ProductPickerModal({
           <div>
             <div
               className="font-semibold text-[var(--color-secondary)]"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Assign Product
             </div>
@@ -859,7 +859,7 @@ function AssetTagDiagram({ suffix }: { suffix: string }) {
           >
             <div className="flex items-center justify-between px-6 py-4 border-b border-gray-100">
               <div>
-                <div className="font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "'Outfit', sans-serif" }}>
+                <div className="font-semibold text-[var(--color-secondary)]" style={{ fontFamily: "var(--font-display)" }}>
                   Where to find the Asset Number
                 </div>
                 <div className="text-xs text-gray-500 mt-0.5">
@@ -1208,7 +1208,7 @@ export default function MachinesSection({ machines, onChange, customerShortName 
         <div>
           <h2
             className="text-2xl font-semibold text-[var(--color-secondary)]"
-            style={{ fontFamily: "'Outfit', sans-serif" }}
+            style={{ fontFamily: "var(--font-display)" }}
           >
             Configure Machines
           </h2>

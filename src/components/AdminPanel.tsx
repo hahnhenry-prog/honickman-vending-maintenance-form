@@ -106,7 +106,7 @@ const clearAll = () => {
           <div>
             <div
               className="text-white font-semibold text-sm leading-tight"
-              style={{ fontFamily: "'Outfit', sans-serif" }}
+              style={{ fontFamily: "var(--font-display)" }}
             >
               Product Filter Configuration
             </div>
