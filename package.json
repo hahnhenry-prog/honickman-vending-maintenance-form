@@ -10,7 +10,7 @@
     "format": "oxfmt"
   },
   "dependencies": {
-    "@honickman/ui": "link:../honickman-ui",
+    "@honickman/ui": "github:hahnhenry-prog/honickman-ui",
     "react": "^19.0.0",
     "react-dom": "^19.0.0"
   },
